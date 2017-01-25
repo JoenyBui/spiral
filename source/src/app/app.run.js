@@ -6,7 +6,12 @@
         .run(runFunction);
 
     /* @ngInject */
-    function runFunction($rootScope, $state) {
+    function runFunction($rootScope, $state, $firebaseObject) {
+        var ref = firebase.database().ref();
+
+        // download the data into a local object
+        var data = $firebaseObject(ref);
+        // putting a console.log here won't work, see below
 
         // default redirect if access is denied
         function redirectError() {

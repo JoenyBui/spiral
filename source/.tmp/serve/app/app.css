@@ -543,7 +543,6 @@ button.md-button::-moz-focus-inner {
   display: inline-block;
   -webkit-box-align: center;
       -ms-flex-align: center;
-              -ms-grid-row-align: center;
           align-items: center;
   padding: 0 6px;
   margin: 6px 8px;
@@ -768,7 +767,6 @@ md-bottom-sheet {
     padding: 0;
     -webkit-box-align: center;
         -ms-flex-align: center;
-                -ms-grid-row-align: center;
             align-items: center;
     height: 48px; }
   md-bottom-sheet.md-grid {
@@ -797,7 +795,6 @@ md-bottom-sheet {
               flex-direction: column;
       -webkit-box-align: center;
           -ms-flex-align: center;
-                  -ms-grid-row-align: center;
               align-items: center;
       -webkit-transition: all 0.5s;
       transition: all 0.5s;
@@ -814,12 +811,10 @@ md-bottom-sheet {
           md-bottom-sheet.md-grid md-list-item:nth-of-type(3n + 1) {
             -webkit-box-align: start;
                 -ms-flex-align: start;
-                        -ms-grid-row-align: flex-start;
                     align-items: flex-start; }
           md-bottom-sheet.md-grid md-list-item:nth-of-type(3n) {
             -webkit-box-align: end;
                 -ms-flex-align: end;
-                        -ms-grid-row-align: flex-end;
                     align-items: flex-end; } }
       @media (min-width: 960px) and (max-width: 1279px) {
         md-bottom-sheet.md-grid md-list-item {
@@ -1923,7 +1918,6 @@ md-fab-speed-dial {
   md-fab-speed-dial.md-is-open .md-fab-action-item {
     -webkit-box-align: center;
         -ms-flex-align: center;
-                -ms-grid-row-align: center;
             align-items: center; }
   md-fab-speed-dial md-fab-actions {
     display: -webkit-box;
@@ -2375,7 +2369,6 @@ md-list-item {
               flex-direction: inherit;
       -webkit-box-align: inherit;
           -ms-flex-align: inherit;
-                  -ms-grid-row-align: inherit;
               align-items: inherit;
       border-radius: 0;
       margin: 0; }
@@ -2443,6 +2436,7 @@ md-list-item {
     md-list-item ._md-list-item-inner > md-checkbox,
     md-list-item ._md-list-item-inner md-checkbox.md-secondary {
       -ms-flex-item-align: center;
+          -ms-grid-row-align: center;
           align-self: center; }
       md-list-item > div.md-primary > md-checkbox .md-label,
       md-list-item > div.md-secondary > md-checkbox .md-label,
@@ -2566,7 +2560,6 @@ md-list-item {
   md-list-item.md-2-line, md-list-item.md-2-line > ._md-no-style, md-list-item.md-3-line, md-list-item.md-3-line > ._md-no-style {
     -webkit-box-align: start;
         -ms-flex-align: start;
-                -ms-grid-row-align: flex-start;
             align-items: flex-start;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
@@ -3905,7 +3898,6 @@ md-select {
     display: block;
     -webkit-box-align: end;
         -ms-flex-align: end;
-                -ms-grid-row-align: flex-end;
             align-items: flex-end;
     text-align: end;
     width: 24px;
@@ -5974,7 +5966,6 @@ md-tooltip {
       align-content: stretch;
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
-              -ms-grid-row-align: stretch;
           align-items: stretch; }
 
 .layout-align-start,
@@ -6028,7 +6019,6 @@ md-tooltip {
 .layout-align-space-around-start {
   -webkit-box-align: start;
       -ms-flex-align: start;
-              -ms-grid-row-align: flex-start;
           align-items: flex-start;
   -ms-flex-line-pack: start;
       align-content: flex-start; }
@@ -6040,7 +6030,6 @@ md-tooltip {
 .layout-align-space-around-center {
   -webkit-box-align: center;
       -ms-flex-align: center;
-              -ms-grid-row-align: center;
           align-items: center;
   -ms-flex-line-pack: center;
       align-content: center;
@@ -6061,7 +6050,6 @@ md-tooltip {
 .layout-align-space-around-end {
   -webkit-box-align: end;
       -ms-flex-align: end;
-              -ms-grid-row-align: flex-end;
           align-items: flex-end;
   -ms-flex-line-pack: end;
       align-content: flex-end; }
@@ -6073,7 +6061,6 @@ md-tooltip {
 .layout-align-space-around-stretch {
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
-              -ms-grid-row-align: stretch;
           align-items: stretch;
   -ms-flex-line-pack: stretch;
       align-content: stretch; }
@@ -7122,7 +7109,6 @@ md-tooltip {
         align-content: stretch;
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
-                -ms-grid-row-align: stretch;
             align-items: stretch; }
   .layout-align-xs-start,
   .layout-align-xs-start-start,
@@ -7170,7 +7156,6 @@ md-tooltip {
   .layout-align-xs-space-around-start {
     -webkit-box-align: start;
         -ms-flex-align: start;
-                -ms-grid-row-align: flex-start;
             align-items: flex-start;
     -ms-flex-line-pack: start;
         align-content: flex-start; }
@@ -7181,7 +7166,6 @@ md-tooltip {
   .layout-align-xs-space-around-center {
     -webkit-box-align: center;
         -ms-flex-align: center;
-                -ms-grid-row-align: center;
             align-items: center;
     -ms-flex-line-pack: center;
         align-content: center;
@@ -7200,7 +7184,6 @@ md-tooltip {
   .layout-align-xs-space-around-end {
     -webkit-box-align: end;
         -ms-flex-align: end;
-                -ms-grid-row-align: flex-end;
             align-items: flex-end;
     -ms-flex-line-pack: end;
         align-content: flex-end; }
@@ -7211,7 +7194,6 @@ md-tooltip {
   .layout-align-xs-space-around-stretch {
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
-                -ms-grid-row-align: stretch;
             align-items: stretch;
     -ms-flex-line-pack: stretch;
         align-content: stretch; }
@@ -8106,7 +8088,6 @@ md-tooltip {
         align-content: stretch;
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
-                -ms-grid-row-align: stretch;
             align-items: stretch; }
   .layout-align-gt-xs-start,
   .layout-align-gt-xs-start-start,
@@ -8154,7 +8135,6 @@ md-tooltip {
   .layout-align-gt-xs-space-around-start {
     -webkit-box-align: start;
         -ms-flex-align: start;
-                -ms-grid-row-align: flex-start;
             align-items: flex-start;
     -ms-flex-line-pack: start;
         align-content: flex-start; }
@@ -8165,7 +8145,6 @@ md-tooltip {
   .layout-align-gt-xs-space-around-center {
     -webkit-box-align: center;
         -ms-flex-align: center;
-                -ms-grid-row-align: center;
             align-items: center;
     -ms-flex-line-pack: center;
         align-content: center;
@@ -8184,7 +8163,6 @@ md-tooltip {
   .layout-align-gt-xs-space-around-end {
     -webkit-box-align: end;
         -ms-flex-align: end;
-                -ms-grid-row-align: flex-end;
             align-items: flex-end;
     -ms-flex-line-pack: end;
         align-content: flex-end; }
@@ -8195,7 +8173,6 @@ md-tooltip {
   .layout-align-gt-xs-space-around-stretch {
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
-                -ms-grid-row-align: stretch;
             align-items: stretch;
     -ms-flex-line-pack: stretch;
         align-content: stretch; }
@@ -9094,7 +9071,6 @@ md-tooltip {
         align-content: stretch;
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
-                -ms-grid-row-align: stretch;
             align-items: stretch; }
   .layout-align-sm-start,
   .layout-align-sm-start-start,
@@ -9142,7 +9118,6 @@ md-tooltip {
   .layout-align-sm-space-around-start {
     -webkit-box-align: start;
         -ms-flex-align: start;
-                -ms-grid-row-align: flex-start;
             align-items: flex-start;
     -ms-flex-line-pack: start;
         align-content: flex-start; }
@@ -9153,7 +9128,6 @@ md-tooltip {
   .layout-align-sm-space-around-center {
     -webkit-box-align: center;
         -ms-flex-align: center;
-                -ms-grid-row-align: center;
             align-items: center;
     -ms-flex-line-pack: center;
         align-content: center;
@@ -9172,7 +9146,6 @@ md-tooltip {
   .layout-align-sm-space-around-end {
     -webkit-box-align: end;
         -ms-flex-align: end;
-                -ms-grid-row-align: flex-end;
             align-items: flex-end;
     -ms-flex-line-pack: end;
         align-content: flex-end; }
@@ -9183,7 +9156,6 @@ md-tooltip {
   .layout-align-sm-space-around-stretch {
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
-                -ms-grid-row-align: stretch;
             align-items: stretch;
     -ms-flex-line-pack: stretch;
         align-content: stretch; }
@@ -10078,7 +10050,6 @@ md-tooltip {
         align-content: stretch;
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
-                -ms-grid-row-align: stretch;
             align-items: stretch; }
   .layout-align-gt-sm-start,
   .layout-align-gt-sm-start-start,
@@ -10126,7 +10097,6 @@ md-tooltip {
   .layout-align-gt-sm-space-around-start {
     -webkit-box-align: start;
         -ms-flex-align: start;
-                -ms-grid-row-align: flex-start;
             align-items: flex-start;
     -ms-flex-line-pack: start;
         align-content: flex-start; }
@@ -10137,7 +10107,6 @@ md-tooltip {
   .layout-align-gt-sm-space-around-center {
     -webkit-box-align: center;
         -ms-flex-align: center;
-                -ms-grid-row-align: center;
             align-items: center;
     -ms-flex-line-pack: center;
         align-content: center;
@@ -10156,7 +10125,6 @@ md-tooltip {
   .layout-align-gt-sm-space-around-end {
     -webkit-box-align: end;
         -ms-flex-align: end;
-                -ms-grid-row-align: flex-end;
             align-items: flex-end;
     -ms-flex-line-pack: end;
         align-content: flex-end; }
@@ -10167,7 +10135,6 @@ md-tooltip {
   .layout-align-gt-sm-space-around-stretch {
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
-                -ms-grid-row-align: stretch;
             align-items: stretch;
     -ms-flex-line-pack: stretch;
         align-content: stretch; }
@@ -11066,7 +11033,6 @@ md-tooltip {
         align-content: stretch;
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
-                -ms-grid-row-align: stretch;
             align-items: stretch; }
   .layout-align-md-start,
   .layout-align-md-start-start,
@@ -11114,7 +11080,6 @@ md-tooltip {
   .layout-align-md-space-around-start {
     -webkit-box-align: start;
         -ms-flex-align: start;
-                -ms-grid-row-align: flex-start;
             align-items: flex-start;
     -ms-flex-line-pack: start;
         align-content: flex-start; }
@@ -11125,7 +11090,6 @@ md-tooltip {
   .layout-align-md-space-around-center {
     -webkit-box-align: center;
         -ms-flex-align: center;
-                -ms-grid-row-align: center;
             align-items: center;
     -ms-flex-line-pack: center;
         align-content: center;
@@ -11144,7 +11108,6 @@ md-tooltip {
   .layout-align-md-space-around-end {
     -webkit-box-align: end;
         -ms-flex-align: end;
-                -ms-grid-row-align: flex-end;
             align-items: flex-end;
     -ms-flex-line-pack: end;
         align-content: flex-end; }
@@ -11155,7 +11118,6 @@ md-tooltip {
   .layout-align-md-space-around-stretch {
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
-                -ms-grid-row-align: stretch;
             align-items: stretch;
     -ms-flex-line-pack: stretch;
         align-content: stretch; }
@@ -12050,7 +12012,6 @@ md-tooltip {
         align-content: stretch;
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
-                -ms-grid-row-align: stretch;
             align-items: stretch; }
   .layout-align-gt-md-start,
   .layout-align-gt-md-start-start,
@@ -12098,7 +12059,6 @@ md-tooltip {
   .layout-align-gt-md-space-around-start {
     -webkit-box-align: start;
         -ms-flex-align: start;
-                -ms-grid-row-align: flex-start;
             align-items: flex-start;
     -ms-flex-line-pack: start;
         align-content: flex-start; }
@@ -12109,7 +12069,6 @@ md-tooltip {
   .layout-align-gt-md-space-around-center {
     -webkit-box-align: center;
         -ms-flex-align: center;
-                -ms-grid-row-align: center;
             align-items: center;
     -ms-flex-line-pack: center;
         align-content: center;
@@ -12128,7 +12087,6 @@ md-tooltip {
   .layout-align-gt-md-space-around-end {
     -webkit-box-align: end;
         -ms-flex-align: end;
-                -ms-grid-row-align: flex-end;
             align-items: flex-end;
     -ms-flex-line-pack: end;
         align-content: flex-end; }
@@ -12139,7 +12097,6 @@ md-tooltip {
   .layout-align-gt-md-space-around-stretch {
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
-                -ms-grid-row-align: stretch;
             align-items: stretch;
     -ms-flex-line-pack: stretch;
         align-content: stretch; }
@@ -13038,7 +12995,6 @@ md-tooltip {
         align-content: stretch;
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
-                -ms-grid-row-align: stretch;
             align-items: stretch; }
   .layout-align-lg-start,
   .layout-align-lg-start-start,
@@ -13086,7 +13042,6 @@ md-tooltip {
   .layout-align-lg-space-around-start {
     -webkit-box-align: start;
         -ms-flex-align: start;
-                -ms-grid-row-align: flex-start;
             align-items: flex-start;
     -ms-flex-line-pack: start;
         align-content: flex-start; }
@@ -13097,7 +13052,6 @@ md-tooltip {
   .layout-align-lg-space-around-center {
     -webkit-box-align: center;
         -ms-flex-align: center;
-                -ms-grid-row-align: center;
             align-items: center;
     -ms-flex-line-pack: center;
         align-content: center;
@@ -13116,7 +13070,6 @@ md-tooltip {
   .layout-align-lg-space-around-end {
     -webkit-box-align: end;
         -ms-flex-align: end;
-                -ms-grid-row-align: flex-end;
             align-items: flex-end;
     -ms-flex-line-pack: end;
         align-content: flex-end; }
@@ -13127,7 +13080,6 @@ md-tooltip {
   .layout-align-lg-space-around-stretch {
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
-                -ms-grid-row-align: stretch;
             align-items: stretch;
     -ms-flex-line-pack: stretch;
         align-content: stretch; }
@@ -14022,7 +13974,6 @@ md-tooltip {
         align-content: stretch;
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
-                -ms-grid-row-align: stretch;
             align-items: stretch; }
   .layout-align-gt-lg-start,
   .layout-align-gt-lg-start-start,
@@ -14070,7 +14021,6 @@ md-tooltip {
   .layout-align-gt-lg-space-around-start {
     -webkit-box-align: start;
         -ms-flex-align: start;
-                -ms-grid-row-align: flex-start;
             align-items: flex-start;
     -ms-flex-line-pack: start;
         align-content: flex-start; }
@@ -14081,7 +14031,6 @@ md-tooltip {
   .layout-align-gt-lg-space-around-center {
     -webkit-box-align: center;
         -ms-flex-align: center;
-                -ms-grid-row-align: center;
             align-items: center;
     -ms-flex-line-pack: center;
         align-content: center;
@@ -14100,7 +14049,6 @@ md-tooltip {
   .layout-align-gt-lg-space-around-end {
     -webkit-box-align: end;
         -ms-flex-align: end;
-                -ms-grid-row-align: flex-end;
             align-items: flex-end;
     -ms-flex-line-pack: end;
         align-content: flex-end; }
@@ -14111,7 +14059,6 @@ md-tooltip {
   .layout-align-gt-lg-space-around-stretch {
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
-                -ms-grid-row-align: stretch;
             align-items: stretch;
     -ms-flex-line-pack: stretch;
         align-content: stretch; }
@@ -15004,7 +14951,6 @@ md-tooltip {
         align-content: stretch;
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
-                -ms-grid-row-align: stretch;
             align-items: stretch; }
   .layout-align-xl-start,
   .layout-align-xl-start-start,
@@ -15052,7 +14998,6 @@ md-tooltip {
   .layout-align-xl-space-around-start {
     -webkit-box-align: start;
         -ms-flex-align: start;
-                -ms-grid-row-align: flex-start;
             align-items: flex-start;
     -ms-flex-line-pack: start;
         align-content: flex-start; }
@@ -15063,7 +15008,6 @@ md-tooltip {
   .layout-align-xl-space-around-center {
     -webkit-box-align: center;
         -ms-flex-align: center;
-                -ms-grid-row-align: center;
             align-items: center;
     -ms-flex-line-pack: center;
         align-content: center;
@@ -15082,7 +15026,6 @@ md-tooltip {
   .layout-align-xl-space-around-end {
     -webkit-box-align: end;
         -ms-flex-align: end;
-                -ms-grid-row-align: flex-end;
             align-items: flex-end;
     -ms-flex-line-pack: end;
         align-content: flex-end; }
@@ -15093,7 +15036,6 @@ md-tooltip {
   .layout-align-xl-space-around-stretch {
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
-                -ms-grid-row-align: stretch;
             align-items: stretch;
     -ms-flex-line-pack: stretch;
         align-content: stretch; }
@@ -19801,6 +19743,44 @@ md-icon[md-font-icon]:focus {
 .background-overlay-static {
   position: static; }
 
+#admin-panel {
+  overflow: hidden;
+  position: relative; }
+  #admin-panel > md-content {
+    z-index: 3; }
+
+#admin-panel-content-view {
+  display: block;
+  position: relative;
+  padding-bottom: 65px;
+  min-height: calc(100vh - 64px);
+  -webkit-backface-visibility: hidden; }
+
+.admin-sidebar-left {
+  overflow-x: hidden; }
+  .admin-sidebar-left md-content {
+    height: 100%;
+    overflow-x: hidden; }
+
+.admin-sidebar-left._md-locked-open {
+  width: 260px;
+  min-width: 260px;
+  max-width: 260px;
+  -ms-overflow-style: none;
+  /* ie fix for removing scrollbars */ }
+  .admin-sidebar-left._md-locked-open.admin-sidebar-collapsed {
+    min-width: 48px;
+    max-width: 48px;
+    -webkit-transition: all .3s;
+    transition: all .3s; }
+    .admin-sidebar-left._md-locked-open.admin-sidebar-collapsed.hover {
+      min-width: 260px;
+      max-width: 260px; }
+
+.admin-toolbar {
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.14);
+  z-index: 4; }
+
 #footer {
   box-shadow: 0 -2px 6px 0 rgba(0, 0, 0, 0.1);
   position: absolute;
@@ -20246,14 +20226,12 @@ tri-menu {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55) 0%, transparent 100%);
     -webkit-box-align: start;
         -ms-flex-align: start;
-                -ms-grid-row-align: flex-start;
             align-items: flex-start; }
     .widget.widget-overlay-title.layout-column .widget-title[flex-order="2"] {
       top: auto;
       bottom: 0;
       -webkit-box-align: end;
           -ms-flex-align: end;
-                  -ms-grid-row-align: flex-end;
               align-items: flex-end;
       background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.55) 0%, transparent 100%);
       background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, transparent 100%); }
@@ -20432,44 +20410,6 @@ chart-legend ul {
 [tri-wizard] .wizard-navbar {
   background-color: white; }
 
-#admin-panel {
-  overflow: hidden;
-  position: relative; }
-  #admin-panel > md-content {
-    z-index: 3; }
-
-#admin-panel-content-view {
-  display: block;
-  position: relative;
-  padding-bottom: 65px;
-  min-height: calc(100vh - 64px);
-  -webkit-backface-visibility: hidden; }
-
-.admin-sidebar-left {
-  overflow-x: hidden; }
-  .admin-sidebar-left md-content {
-    height: 100%;
-    overflow-x: hidden; }
-
-.admin-sidebar-left._md-locked-open {
-  width: 260px;
-  min-width: 260px;
-  max-width: 260px;
-  -ms-overflow-style: none;
-  /* ie fix for removing scrollbars */ }
-  .admin-sidebar-left._md-locked-open.admin-sidebar-collapsed {
-    min-width: 48px;
-    max-width: 48px;
-    -webkit-transition: all .3s;
-    transition: all .3s; }
-    .admin-sidebar-left._md-locked-open.admin-sidebar-collapsed.hover {
-      min-width: 260px;
-      max-width: 260px; }
-
-.admin-toolbar {
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.14);
-  z-index: 4; }
-
 /* this was added to fix a bug in Safari */
 /* https://github.com/oxygenna/triangular/issues/126 */
 .triangular-content > div {
@@ -20540,35 +20480,6 @@ chart-legend ul {
 
 .seed-list {
   list-style: lower-greek; }
-
-.triangular-toolbar.ng-enter {
-  -webkit-transition: .5s;
-  transition: .5s; }
-
-.triangular-toolbar.ng-enter {
-  -webkit-animation-name: slideInDown;
-  animation-name: slideInDown;
-  -webkit-animation-iteration-count: 1;
-  animation-iteration-count: 1;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-delay: 0s;
-  animation-delay: 0s;
-  -webkit-animation-timing-function: ease;
-  animation-timing-function: ease;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden; }
-
-.triangular-toolbar.ng-leave {
-  display: none; }
-
-.triangular-loader {
-  background: #fff; }
-
-.app-loader md-progress-linear {
-  width: 80%; }
 
 #ui-login.ng-enter {
   -webkit-animation-name: fadeIn;
@@ -20725,6 +20636,82 @@ md-select[md-container-class="calendar-color-select"] md-select-value span {
 
 .tabs-tall md-pagination-wrapper, .tabs-tall md-tabs-canvas {
   height: 72px; }
+
+.elements-button-examples md-card-content {
+  min-height: 100px; }
+
+.elements-buttons-raised-usage {
+  width: 400px; }
+  .elements-buttons-raised-usage .elements-raised-content {
+    padding: 16px; }
+  .elements-buttons-raised-usage .elements-raised-buttons {
+    padding: 16px; }
+    .elements-buttons-raised-usage .elements-raised-buttons .md-button {
+      margin-left: 5px; }
+
+.elements-buttons-fab-usage {
+  position: relative; }
+  .elements-buttons-fab-usage .md-fab {
+    position: absolute;
+    bottom: 26px;
+    right: 26px; }
+
+.elements-icons md-content {
+  min-width: 400px;
+  height: 500px; }
+  .elements-icons md-content .md-font {
+    font-size: 24px; }
+
+.elements-icon-size-1 {
+  width: 16px;
+  height: 16px; }
+  .elements-icon-size-1 span {
+    font-size: 16px; }
+
+.elements-icon-size-2 {
+  width: 24px;
+  height: 24px; }
+  .elements-icon-size-2 span {
+    font-size: 24px; }
+
+.elements-icon-size-3 {
+  width: 32px;
+  height: 32px; }
+  .elements-icon-size-3 span {
+    font-size: 32px; }
+
+.elements-icon-size-4 {
+  width: 48px;
+  height: 48px; }
+  .elements-icon-size-4 span {
+    font-size: 48px; }
+
+.elements-icons-preview .md-button md-icon {
+  font-size: 24px; }
+
+.elements-icons-preview .elements-icon-small {
+  font-size: 16px;
+  width: 16px;
+  height: 16px; }
+
+.elements-radio-avatar img {
+  width: 150px; }
+
+.example-tabs-content md-content {
+  background: none !important; }
+
+.elements-grids-example md-grid-tile {
+  background-size: 100%; }
+
+.elements-sidebar-example md-sidenav md-content {
+  background: none; }
+
+.elements-sidebar-example .md-button {
+  margin: 0px 20px; }
+
+.elements-whiteframe-example md-whiteframe {
+  min-width: 500px;
+  background-color: white; }
 
 .email-dialog {
   min-width: 800px;
@@ -20963,81 +20950,21 @@ md-select[md-container-class="calendar-color-select"] md-select-value span {
       -webkit-transform: rotate(90deg) translateX(0%) !important;
               transform: rotate(90deg) translateX(0%) !important; } }
 
-.elements-button-examples md-card-content {
-  min-height: 100px; }
+.md-select-form {
+  display: inline-block;
+  margin-top: 2px;
+  width: 100%; }
+  .md-select-form span {
+    width: 100%; }
 
-.elements-buttons-raised-usage {
-  width: 400px; }
-  .elements-buttons-raised-usage .elements-raised-content {
-    padding: 16px; }
-  .elements-buttons-raised-usage .elements-raised-buttons {
-    padding: 16px; }
-    .elements-buttons-raised-usage .elements-raised-buttons .md-button {
-      margin-left: 5px; }
+.github-user-dropdown img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-sizing: content-box; }
 
-.elements-buttons-fab-usage {
-  position: relative; }
-  .elements-buttons-fab-usage .md-fab {
-    position: absolute;
-    bottom: 26px;
-    right: 26px; }
-
-.elements-icons md-content {
-  min-width: 400px;
-  height: 500px; }
-  .elements-icons md-content .md-font {
-    font-size: 24px; }
-
-.elements-icon-size-1 {
-  width: 16px;
-  height: 16px; }
-  .elements-icon-size-1 span {
-    font-size: 16px; }
-
-.elements-icon-size-2 {
-  width: 24px;
-  height: 24px; }
-  .elements-icon-size-2 span {
-    font-size: 24px; }
-
-.elements-icon-size-3 {
-  width: 32px;
-  height: 32px; }
-  .elements-icon-size-3 span {
-    font-size: 32px; }
-
-.elements-icon-size-4 {
-  width: 48px;
-  height: 48px; }
-  .elements-icon-size-4 span {
-    font-size: 48px; }
-
-.elements-icons-preview .md-button md-icon {
-  font-size: 24px; }
-
-.elements-icons-preview .elements-icon-small {
-  font-size: 16px;
-  width: 16px;
-  height: 16px; }
-
-.elements-radio-avatar img {
-  width: 150px; }
-
-.example-tabs-content md-content {
-  background: none !important; }
-
-.elements-grids-example md-grid-tile {
-  background-size: 100%; }
-
-.elements-sidebar-example md-sidenav md-content {
-  background: none; }
-
-.elements-sidebar-example .md-button {
-  margin: 0px 20px; }
-
-.elements-whiteframe-example md-whiteframe {
-  min-width: 500px;
-  background-color: white; }
+.github-user-dropdown span {
+  margin-left: 16px; }
 
 .maps-example .angular-google-map-container {
   height: 550px; }
@@ -21052,13 +20979,6 @@ md-select[md-container-class="calendar-color-select"] md-select-value span {
     bottom: 0px;
     right: 0px;
     left: 0px; }
-
-.md-select-form {
-  display: inline-block;
-  margin-top: 2px;
-  width: 100%; }
-  .md-select-form span {
-    width: 100%; }
 
 .todo-container .slide.ng-enter {
   -webkit-animation-name: slideInRight;
@@ -21097,15 +21017,6 @@ md-select[md-container-class="calendar-color-select"] md-select-value span {
     padding: 0px; }
     .todo-container md-card {
       margin: 0px; } }
-
-.github-user-dropdown img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  box-sizing: content-box; }
-
-.github-user-dropdown span {
-  margin-left: 16px; }
 
 .ui-color-grid md-grid-tile {
   cursor: pointer; }
@@ -21185,6 +21096,35 @@ md-select[md-container-class="calendar-color-select"] md-select-value span {
   width: 40px;
   border-radius: 50%;
   z-index: 5; }
+
+.triangular-loader {
+  background: #fff; }
+
+.app-loader md-progress-linear {
+  width: 80%; }
+
+.triangular-toolbar.ng-enter {
+  -webkit-transition: .5s;
+  transition: .5s; }
+
+.triangular-toolbar.ng-enter {
+  -webkit-animation-name: slideInDown;
+  animation-name: slideInDown;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden; }
+
+.triangular-toolbar.ng-leave {
+  display: none; }
 
 .login-frame md-card {
   max-width: 400px;

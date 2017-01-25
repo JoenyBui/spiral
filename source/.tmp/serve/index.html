@@ -82,6 +82,8 @@
     <script src="../bower_components/ng-file-upload/ng-file-upload-shim.js"></script>
     <script src="../bower_components/ng-file-upload/ng-file-upload.js"></script>
     <script src="../bower_components/angular-permission/dist/angular-permission.js"></script>
+    <script src="../bower_components/firebase/firebase.js"></script>
+    <script src="../bower_components/angularfire/dist/angularfire.js"></script>
     <!-- endbower -->
 
     <!-- enqueue all translations for calendar (remove if you dont need multilanguage) -->
@@ -147,13 +149,13 @@
     <script src="app/examples/dashboards/widgets/widget-chartjs-pie.directive.js"></script>
     <script src="app/examples/dashboards/widgets/widget-chartjs-line.directive.js"></script>
     <script src="app/examples/dashboards/widgets/widget-calendar.directive.js"></script>
-    <script src="app/examples/dashboards/social/dashboard-social.controller.js"></script>
-    <script src="app/examples/dashboards/server/dashboard-server.controller.js"></script>
     <script src="app/examples/dashboards/sales/sales.service.js"></script>
     <script src="app/examples/dashboards/sales/order-dialog.controller.js"></script>
     <script src="app/examples/dashboards/sales/fab-button.controller.js"></script>
     <script src="app/examples/dashboards/sales/date-change-dialog.controller.js"></script>
     <script src="app/examples/dashboards/sales/dashboard-sales.controller.js"></script>
+    <script src="app/examples/dashboards/social/dashboard-social.controller.js"></script>
+    <script src="app/examples/dashboards/server/dashboard-server.controller.js"></script>
     <script src="app/examples/dashboards/analytics/dashboard-analytics.controller.js"></script>
     <script src="app/examples/charts/charts.module.js"></script>
     <script src="app/examples/charts/examples/google-scatter.controller.js"></script>
@@ -186,6 +188,12 @@
     <script src="app/triangular/directives/countupto.directive.js"></script>
     <script src="app/permission/permission.module.js"></script>
     <script src="app/permission/pages/permission.controller.js"></script>
+    <script src="app/layouts/toolbar/toolbar.controller.js"></script>
+    <script src="app/layouts/rightsidenav/rightsidenav.controller.js"></script>
+    <script src="app/app.module.js"></script>
+    <script src="app/layouts/loader/loader.controller.js"></script>
+    <script src="app/layouts/leftsidenav/leftsidenav.controller.js"></script>
+    <script src="app/layouts/footer/footer.controller.js"></script>
     <script src="app/examples/ui/webfont-loader-module.js"></script>
     <script src="app/examples/ui/ui.module.js"></script>
     <script src="app/examples/ui/weather-icons.controller.js"></script>
@@ -211,11 +219,11 @@
     <script src="app/examples/layouts/layouts.module.js"></script>
     <script src="app/examples/layouts/layouts.config.js"></script>
     <script src="app/examples/layouts/composer.controller.js"></script>
+    <script src="app/examples/forms/forms.config.js"></script>
+    <script src="app/examples/forms/form-wizard.controller.js"></script>
     <script src="app/examples/github/github.module.js"></script>
     <script src="app/examples/github/github.controller.js"></script>
     <script src="app/examples/github/github.config.js"></script>
-    <script src="app/examples/forms/forms.config.js"></script>
-    <script src="app/examples/forms/form-wizard.controller.js"></script>
     <script src="app/examples/extras/extras.module.js"></script>
     <script src="app/examples/extras/timeline.controller.js"></script>
     <script src="app/examples/extras/replace-with.directive.js"></script>
@@ -224,10 +232,6 @@
     <script src="app/examples/extras/extras.config.js"></script>
     <script src="app/examples/extras/avatars.controller.js"></script>
     <script src="app/examples/extras/animate-element.directive.js"></script>
-    <script src="app/examples/elements/progress.controller.js"></script>
-    <script src="app/examples/elements/icons.controller.js"></script>
-    <script src="app/examples/elements/elements.config.js"></script>
-    <script src="app/examples/elements/buttons.controller.js"></script>
     <script src="app/examples/email/inbox.controller.js"></script>
     <script src="app/examples/email/emailgroup.filter.js"></script>
     <script src="app/examples/email/email.controller.js"></script>
@@ -236,6 +240,10 @@
     <script src="app/examples/email/email-search.filter.js"></script>
     <script src="app/examples/email/email-dialog.controller.js"></script>
     <script src="app/examples/email/cut.filter.js"></script>
+    <script src="app/examples/elements/progress.controller.js"></script>
+    <script src="app/examples/elements/icons.controller.js"></script>
+    <script src="app/examples/elements/elements.config.js"></script>
+    <script src="app/examples/elements/buttons.controller.js"></script>
     <script src="app/examples/dashboards/dashboards.config.js"></script>
     <script src="app/examples/dashboards/dashboard-draggable-controller.js"></script>
     <script src="app/examples/charts/charts.config.js"></script>
@@ -245,20 +253,14 @@
     <script src="app/examples/calendar/calendar.config.js"></script>
     <script src="app/examples/calendar/calendar-fabs.controller.js"></script>
     <script src="app/examples/authentication/authentication.config.js"></script>
-    <script src="app/layouts/toolbar/toolbar.controller.js"></script>
-    <script src="app/layouts/rightsidenav/rightsidenav.controller.js"></script>
-    <script src="app/app.module.js"></script>
-    <script src="app/layouts/loader/loader.controller.js"></script>
-    <script src="app/layouts/leftsidenav/leftsidenav.controller.js"></script>
-    <script src="app/layouts/footer/footer.controller.js"></script>
+    <script src="app/triangular/triangular.run.js"></script>
+    <script src="app/triangular/settings.provider.js"></script>
+    <script src="app/triangular/config.route.js"></script>
     <script src="app/translate/translate.module.js"></script>
     <script src="app/translate/translate.config.js"></script>
     <script src="app/seed-module/seed.module.js"></script>
     <script src="app/seed-module/seed.config.js"></script>
     <script src="app/seed-module/seed-page.controller.js"></script>
-    <script src="app/triangular/triangular.run.js"></script>
-    <script src="app/triangular/settings.provider.js"></script>
-    <script src="app/triangular/config.route.js"></script>
     <script src="app/permission/user.factory.js"></script>
     <script src="app/permission/permission.run.js"></script>
     <script src="app/permission/permission.config.js"></script>
@@ -270,6 +272,7 @@
     <script src="app/config.triangular.settings.js"></script>
     <script src="app/config.triangular.layout.js"></script>
     <script src="app/config.route.js"></script>
+    <script src="app/config.firebase.js"></script>
     <script src="app/config.chartjs.js"></script>
     <script src="app/app.run.js"></script>
     <!-- endinject -->
