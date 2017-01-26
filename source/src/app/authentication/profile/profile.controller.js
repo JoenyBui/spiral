@@ -2,12 +2,13 @@
     'use strict';
 
     angular
-        .module('app.examples.authentication')
+        .module('app.authentication')
         .controller('ProfileController', ProfileController);
 
     /* @ngInject */
-    function ProfileController() {
+    function ProfileController($state, md5, auth, profile) {
         var vm = this;
+
         vm.settingsGroups = [{
             name: 'Account Settings',
             settings: [{
@@ -39,16 +40,30 @@
                 enabled: true
             }]
         }];
-        vm.user = {
-            name: 'Christos',
-            email: 'info@oxygenna.com',
-            location: 'Sitia, Crete, Greece',
-            website: 'http://www.oxygenna.com',
-            twitter: 'oxygenna',
-            bio: 'We are a small creative web design agency \n who are passionate with our pixels.',
-            current: '',
-            password: '',
-            confirm: ''
+        vm.user = profile;
+
+        // vm.user = {
+        //     name: 'Christos',
+        //     email: 'info@oxygenna.com',
+        //     location: 'Sitia, Crete, Greece',
+        //     website: 'http://www.oxygenna.com',
+        //     twitter: 'oxygenna',
+        //     bio: 'We are a small creative web design agency \n who are passionate with our pixels.',
+        //     current: '',
+        //     password: '',
+        //     confirm: ''
+        // };
+
+        vm.updateProfile = function(){
+            // vm.profile.name = vm.user.name;
+            // vm.profile.email = vm.user.email;
+            // vm.profile.location = vm.user.location;
+            // vm.profile.website = vm.user.website;
+            // vm.profile.twitter = vm.user.twitter;
+            // vm.profile.bio = vm.user.bio;
+
+            vm.user.emailHash = md5.createHash(auth.email);
+            vm.user.$save();
         };
     }
 })();

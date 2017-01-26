@@ -19743,44 +19743,6 @@ md-icon[md-font-icon]:focus {
 .background-overlay-static {
   position: static; }
 
-#admin-panel {
-  overflow: hidden;
-  position: relative; }
-  #admin-panel > md-content {
-    z-index: 3; }
-
-#admin-panel-content-view {
-  display: block;
-  position: relative;
-  padding-bottom: 65px;
-  min-height: calc(100vh - 64px);
-  -webkit-backface-visibility: hidden; }
-
-.admin-sidebar-left {
-  overflow-x: hidden; }
-  .admin-sidebar-left md-content {
-    height: 100%;
-    overflow-x: hidden; }
-
-.admin-sidebar-left._md-locked-open {
-  width: 260px;
-  min-width: 260px;
-  max-width: 260px;
-  -ms-overflow-style: none;
-  /* ie fix for removing scrollbars */ }
-  .admin-sidebar-left._md-locked-open.admin-sidebar-collapsed {
-    min-width: 48px;
-    max-width: 48px;
-    -webkit-transition: all .3s;
-    transition: all .3s; }
-    .admin-sidebar-left._md-locked-open.admin-sidebar-collapsed.hover {
-      min-width: 260px;
-      max-width: 260px; }
-
-.admin-toolbar {
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.14);
-  z-index: 4; }
-
 #footer {
   box-shadow: 0 -2px 6px 0 rgba(0, 0, 0, 0.1);
   position: absolute;
@@ -20410,6 +20372,44 @@ chart-legend ul {
 [tri-wizard] .wizard-navbar {
   background-color: white; }
 
+#admin-panel {
+  overflow: hidden;
+  position: relative; }
+  #admin-panel > md-content {
+    z-index: 3; }
+
+#admin-panel-content-view {
+  display: block;
+  position: relative;
+  padding-bottom: 65px;
+  min-height: calc(100vh - 64px);
+  -webkit-backface-visibility: hidden; }
+
+.admin-sidebar-left {
+  overflow-x: hidden; }
+  .admin-sidebar-left md-content {
+    height: 100%;
+    overflow-x: hidden; }
+
+.admin-sidebar-left._md-locked-open {
+  width: 260px;
+  min-width: 260px;
+  max-width: 260px;
+  -ms-overflow-style: none;
+  /* ie fix for removing scrollbars */ }
+  .admin-sidebar-left._md-locked-open.admin-sidebar-collapsed {
+    min-width: 48px;
+    max-width: 48px;
+    -webkit-transition: all .3s;
+    transition: all .3s; }
+    .admin-sidebar-left._md-locked-open.admin-sidebar-collapsed.hover {
+      min-width: 260px;
+      max-width: 260px; }
+
+.admin-toolbar {
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.14);
+  z-index: 4; }
+
 /* this was added to fix a bug in Safari */
 /* https://github.com/oxygenna/triangular/issues/126 */
 .triangular-content > div {
@@ -20451,36 +20451,6 @@ chart-legend ul {
       min-width: 260px;
       max-width: 260px; }
 
-/* view change animation */
-.triangular-content.ng-enter, .triangular-content.ng-leave {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-transition: .5s;
-  transition: .5s; }
-
-.triangular-content.ng-enter {
-  -webkit-animation-name: slideInUp;
-  animation-name: slideInUp;
-  -webkit-animation-iteration-count: 1;
-  animation-iteration-count: 1;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-delay: 0s;
-  animation-delay: 0s;
-  -webkit-animation-timing-function: ease;
-  animation-timing-function: ease;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden; }
-
-.triangular-content.ng-leave {
-  opacity: 0; }
-
-.seed-list {
-  list-style: lower-greek; }
-
 #ui-login.ng-enter {
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
@@ -20515,6 +20485,55 @@ chart-legend ul {
 
 md-input-container ng-messages, md-input-container data-ng-messages {
   display: block; }
+
+.seed-list {
+  list-style: lower-greek; }
+
+/* view change animation */
+.triangular-content.ng-enter, .triangular-content.ng-leave {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: .5s;
+  transition: .5s; }
+
+.triangular-content.ng-enter {
+  -webkit-animation-name: slideInUp;
+  animation-name: slideInUp;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden; }
+
+.triangular-content.ng-leave {
+  opacity: 0; }
+
+.seed-list {
+  list-style: lower-greek; }
+
+.login-frame md-card {
+  max-width: 400px;
+  margin: auto; }
+
+.login-frame md-checkbox {
+  margin: 0; }
+
+.login-frame img {
+  max-height: 100px;
+  width: auto; }
+
+.login-frame md-toolbar {
+  min-height: 170px; }
+  .login-frame md-toolbar .md-headline {
+    margin: 0; }
 
 .calendar-page {
   padding: 0px 120px; }
@@ -21125,22 +21144,6 @@ md-select[md-container-class="calendar-color-select"] md-select-value span {
 
 .triangular-toolbar.ng-leave {
   display: none; }
-
-.login-frame md-card {
-  max-width: 400px;
-  margin: auto; }
-
-.login-frame md-checkbox {
-  margin: 0; }
-
-.login-frame img {
-  max-height: 100px;
-  width: auto; }
-
-.login-frame md-toolbar {
-  min-height: 170px; }
-  .login-frame md-toolbar .md-headline {
-    margin: 0; }
 
 .sales-dashboard .status {
   padding: 8px 14px;

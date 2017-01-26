@@ -2,7 +2,6 @@
     'use strict';
 
     angular
-        .module('app.examples.authentication', [
-
+        .module('home', [
         ]);
 })();

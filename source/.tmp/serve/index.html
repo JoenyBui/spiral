@@ -84,6 +84,7 @@
     <script src="../bower_components/angular-permission/dist/angular-permission.js"></script>
     <script src="../bower_components/firebase/firebase.js"></script>
     <script src="../bower_components/angularfire/dist/angularfire.js"></script>
+    <script src="../bower_components/angular-md5/angular-md5.js"></script>
     <!-- endbower -->
 
     <!-- enqueue all translations for calendar (remove if you dont need multilanguage) -->
@@ -149,13 +150,13 @@
     <script src="app/examples/dashboards/widgets/widget-chartjs-pie.directive.js"></script>
     <script src="app/examples/dashboards/widgets/widget-chartjs-line.directive.js"></script>
     <script src="app/examples/dashboards/widgets/widget-calendar.directive.js"></script>
+    <script src="app/examples/dashboards/social/dashboard-social.controller.js"></script>
+    <script src="app/examples/dashboards/server/dashboard-server.controller.js"></script>
     <script src="app/examples/dashboards/sales/sales.service.js"></script>
     <script src="app/examples/dashboards/sales/order-dialog.controller.js"></script>
     <script src="app/examples/dashboards/sales/fab-button.controller.js"></script>
     <script src="app/examples/dashboards/sales/date-change-dialog.controller.js"></script>
     <script src="app/examples/dashboards/sales/dashboard-sales.controller.js"></script>
-    <script src="app/examples/dashboards/social/dashboard-social.controller.js"></script>
-    <script src="app/examples/dashboards/server/dashboard-server.controller.js"></script>
     <script src="app/examples/dashboards/analytics/dashboard-analytics.controller.js"></script>
     <script src="app/examples/charts/charts.module.js"></script>
     <script src="app/examples/charts/examples/google-scatter.controller.js"></script>
@@ -165,12 +166,6 @@
     <script src="app/examples/charts/examples/chartjs-pie.controller.js"></script>
     <script src="app/examples/charts/examples/chartjs-line.controller.js"></script>
     <script src="app/examples/charts/examples/chartjs-bar.controller.js"></script>
-    <script src="app/examples/authentication/authentication.module.js"></script>
-    <script src="app/examples/authentication/signup/signup.controller.js"></script>
-    <script src="app/examples/authentication/profile/profile.controller.js"></script>
-    <script src="app/examples/authentication/login/login.controller.js"></script>
-    <script src="app/examples/authentication/lock/lock.controller.js"></script>
-    <script src="app/examples/authentication/forgot/forgot.controller.js"></script>
     <script src="app/triangular/themes/themes.module.js"></script>
     <script src="app/triangular/themes/theming.provider.js"></script>
     <script src="app/triangular/themes/skins.provider.js"></script>
@@ -219,11 +214,11 @@
     <script src="app/examples/layouts/layouts.module.js"></script>
     <script src="app/examples/layouts/layouts.config.js"></script>
     <script src="app/examples/layouts/composer.controller.js"></script>
-    <script src="app/examples/forms/forms.config.js"></script>
-    <script src="app/examples/forms/form-wizard.controller.js"></script>
     <script src="app/examples/github/github.module.js"></script>
     <script src="app/examples/github/github.controller.js"></script>
     <script src="app/examples/github/github.config.js"></script>
+    <script src="app/examples/forms/forms.config.js"></script>
+    <script src="app/examples/forms/form-wizard.controller.js"></script>
     <script src="app/examples/extras/extras.module.js"></script>
     <script src="app/examples/extras/timeline.controller.js"></script>
     <script src="app/examples/extras/replace-with.directive.js"></script>
@@ -232,6 +227,10 @@
     <script src="app/examples/extras/extras.config.js"></script>
     <script src="app/examples/extras/avatars.controller.js"></script>
     <script src="app/examples/extras/animate-element.directive.js"></script>
+    <script src="app/examples/elements/progress.controller.js"></script>
+    <script src="app/examples/elements/icons.controller.js"></script>
+    <script src="app/examples/elements/elements.config.js"></script>
+    <script src="app/examples/elements/buttons.controller.js"></script>
     <script src="app/examples/email/inbox.controller.js"></script>
     <script src="app/examples/email/emailgroup.filter.js"></script>
     <script src="app/examples/email/email.controller.js"></script>
@@ -240,10 +239,6 @@
     <script src="app/examples/email/email-search.filter.js"></script>
     <script src="app/examples/email/email-dialog.controller.js"></script>
     <script src="app/examples/email/cut.filter.js"></script>
-    <script src="app/examples/elements/progress.controller.js"></script>
-    <script src="app/examples/elements/icons.controller.js"></script>
-    <script src="app/examples/elements/elements.config.js"></script>
-    <script src="app/examples/elements/buttons.controller.js"></script>
     <script src="app/examples/dashboards/dashboards.config.js"></script>
     <script src="app/examples/dashboards/dashboard-draggable-controller.js"></script>
     <script src="app/examples/charts/charts.config.js"></script>
@@ -252,7 +247,12 @@
     <script src="app/examples/calendar/calendar.controller.js"></script>
     <script src="app/examples/calendar/calendar.config.js"></script>
     <script src="app/examples/calendar/calendar-fabs.controller.js"></script>
-    <script src="app/examples/authentication/authentication.config.js"></script>
+    <script src="app/authentication/authentication.module.js"></script>
+    <script src="app/authentication/signup/signup.controller.js"></script>
+    <script src="app/authentication/profile/profile.controller.js"></script>
+    <script src="app/authentication/login/login.controller.js"></script>
+    <script src="app/authentication/lock/lock.controller.js"></script>
+    <script src="app/authentication/forgot/forgot.controller.js"></script>
     <script src="app/triangular/triangular.run.js"></script>
     <script src="app/triangular/settings.provider.js"></script>
     <script src="app/triangular/config.route.js"></script>
@@ -265,6 +265,11 @@
     <script src="app/permission/permission.run.js"></script>
     <script src="app/permission/permission.config.js"></script>
     <script src="app/examples/examples.module.js"></script>
+    <script src="app/home/home.module.js"></script>
+    <script src="app/home/home.config.js"></script>
+    <script src="app/home/home-page.controller.js"></script>
+    <script src="app/authentication/authentication.user.factory.js"></script>
+    <script src="app/authentication/authentication.config.js"></script>
     <script src="app/value.googlechart.js"></script>
     <script src="app/translate.filter.js"></script>
     <script src="app/error-page.controller.js"></script>
@@ -275,6 +280,7 @@
     <script src="app/config.firebase.js"></script>
     <script src="app/config.chartjs.js"></script>
     <script src="app/app.run.js"></script>
+    <script src="app/app.auth.controller.js"></script>
     <!-- endinject -->
 
     <!-- inject:partials -->

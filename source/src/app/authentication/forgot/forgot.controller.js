@@ -2,27 +2,24 @@
     'use strict';
 
     angular
-        .module('app.examples.authentication')
-        .controller('SignupController', SignupController);
+        .module('app.authentication')
+        .controller('ForgotController', ForgotController);
 
     /* @ngInject */
-    function SignupController($scope, $state, $mdToast, $http, $filter, triSettings) {
+    function ForgotController($scope, $state, $mdToast, $filter, $http, triSettings) {
         var vm = this;
         vm.triSettings = triSettings;
-        vm.signupClick = signupClick;
         vm.user = {
-            name: '',
-            email: '',
-            password: '',
-            confirm: ''
+            email: ''
         };
+        vm.resetClick = resetClick;
 
         ////////////////
 
-        function signupClick() {
+        function resetClick() {
             $mdToast.show(
                 $mdToast.simple()
-                .content($filter('triTranslate')('Confirmation sent'))
+                .content($filter('triTranslate')('Your new password has been mailed'))
                 .position('bottom right')
                 .action($filter('triTranslate')('Login'))
                 .highlightAction(true)
