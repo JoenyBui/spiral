@@ -44,30 +44,6 @@
 
         // events
 
-        $scope.$on('salesChangeDate', function(event, $event) {
-            $mdDialog.show({
-                controller: 'DateChangeDialogController',
-                controllerAs: 'vm',
-                templateUrl: 'app/examples/dashboards/sales/date-change-dialog.tmpl.html',
-                locals: {
-                    range: vm.dateRange
-                },
-                targetEvent: $event
-            })
-            .then(function() {
-                // create new data
-                createData();
-
-                // pop a toast
-                $mdToast.show(
-                    $mdToast.simple()
-                    .content($filter('triTranslate')('Date Range Updated'))
-                    .position('bottom right')
-                    .hideDelay(2000)
-                );
-            });
-        });
-
         // init
 
         createData();

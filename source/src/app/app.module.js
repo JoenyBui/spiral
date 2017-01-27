@@ -24,6 +24,7 @@
             'ngFileUpload',
             'firebase',
             'angular-md5',
+            'ui.codemirror',
 
             // 'seed-module',
             'app.authentication',
@@ -39,7 +40,8 @@
             // https://github.com/Narzerus/angular-permission see here for why
             'app.examples',
 
-            'home'
+            'home',
+            'essay'
         ])
 
         // set a constant for the API we are connecting to

@@ -16,5 +16,18 @@
             messagingSenderId: "812064767363"
         };
         firebase.initializeApp(config);
+
+        // // Get Firebase Database reference.
+        // var firepadRef = firebase.database().ref();
+        //
+        // // Create CodeMirror (with lineWrapping on).
+        // var codeMirror = CodeMirror(document.getElementById('firepad'), { lineWrapping: true });
+        //
+        // // Create Firepad (with rich text toolbar and shortcuts enabled).
+        // var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, {
+        //     richTextShortcuts: true,
+        //     richTextToolbar: true,
+        //     defaultText: 'Hello, World!'
+        // });
     }
 })();

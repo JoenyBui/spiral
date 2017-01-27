@@ -1,12 +1,22 @@
-<md-content class="padded-content-page">
-    <div layout="row" layout-align="center center">
-        <h2 class="md-display-3" translate>Welcome to the triangular test page</h2>
+<div class="dashboard-container overlay-10 padded-content-page" layout="column">
+    <div layout="row" layout-margin>
+        <tri-widget flex="100" flex-xs="100" server-widget>
+            <md-tabs layout-fill flex md-dynamic-height md-no-disconnect md-stretch-tabs="always" md-no-pagination>
+
+                <md-tab label="Home">
+                    <md-content class="md-padding">
+                        <md-list>
+                            <md-list-item class="md-2-line" ng-repeat="item in vm.filteredEssarys">
+                                <div class="md-list-item-text">
+                                    <span><a ng-href="{{item.href}}">{{item.name}}</a></span>
+                                    <p>Last updated {{item.timestamp}}</p>
+                                </div>
+                            </md-list-item>
+                        </md-list>
+                    </md-content>
+                </md-tab>
+
+            </md-tabs>
+        </tri-widget>
     </div>
-    <div class="margin-20" layout="row" layout-align="center center">
-        <ul class="seed-list">
-            <li class="md-headline" ng-repeat="test in vm.testData">
-                {{test}}
-            </li>
-        </ul>
-    </div>
-</md-content>
+</div>
