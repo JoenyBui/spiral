@@ -6,29 +6,27 @@
         .controller('EssayPageController', EssayPageController);
 
     /* @ngInject */
-    function EssayPageController(loadItem) {
+    function EssayPageController($scope, $firebaseObject, loadItem) {
         var vm = this;
-
-        vm.text = "";
 
         vm.editorOptions = {
             lineWrapping : true,
             lineNumbers: true,
-            indentWithTabs: true,
-            // onLoad : function(_cm){
-            //
-            //     // HACK to have the codemirror instance in the scope...
-            //     $scope.modeChanged = function(){
-            //         _cm.setOption("mode", vm.mode.toLowerCase());
-            //     };
-            // }
+            indentWithTabs: true
         };
 
         // Get Firebase Database reference.
-
-        // var firepadRef = firebase.database().ref();
         var firepadRef = loadItem;
-        var myElement = angular.element(document.querySelector('#firepad-container'));
+
+        vm.obj = $firebaseObject(firepadRef);
+        vm.obj.$bindTo($scope, 'item').then(function () {
+            console.log($scope.item);
+            
+            vm.obj.$watch(function() {
+                $scope.item.timestamp = new Date().toLocaleString();
+            });
+        });
+
 
         //// Create CodeMirror (with lineWrapping on).
         var codeMirror = CodeMirror(
@@ -44,6 +42,8 @@
             richTextShortcuts: true,
             richTextToolbar: true,
             defaultText: 'Hello, World!'
+        }).on('synced', function (isSynced) {
+            $scope.item.timestamp = new Date().toLocaleString();
         });
 
     }

@@ -8,7 +8,9 @@
                         <md-list>
                             <md-list-item class="md-2-line" ng-repeat="item in vm.essayRefs">
                                 <div class="md-list-item-text">
-                                    <span><a ng-href="#/essay/{{item.$id}}">{{item.name}}</a></span>
+                                    <span><a ng-href="#/essay/{{item.$id}}" ng-if="item.name">{{item.name}}</a></span>
+                                    <span><a ng-href="#/essay/{{item.$id}}" ng-if="!item.name">Untitled</a></span>
+
                                     <p>Last updated {{item.timestamp | date:"MM/dd/yyyy 'at' h:mma"}}</p>
                                 </div>
                             </md-list-item>
