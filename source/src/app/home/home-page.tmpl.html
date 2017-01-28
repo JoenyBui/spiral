@@ -3,19 +3,31 @@
         <tri-widget flex="100" flex-xs="100" server-widget>
             <md-tabs layout-fill flex md-dynamic-height md-no-disconnect md-stretch-tabs="always" md-no-pagination>
 
-                <md-tab label="Home">
+                <md-tab label="Owned">
                     <md-content class="md-padding">
                         <md-list>
-                            <md-list-item class="md-2-line" ng-repeat="item in vm.filteredEssarys">
+                            <md-list-item class="md-2-line" ng-repeat="item in vm.essayRefs">
                                 <div class="md-list-item-text">
-                                    <span><a ng-href="{{item.href}}">{{item.name}}</a></span>
-                                    <p>Last updated {{item.timestamp}}</p>
+                                    <span><a ng-href="#/essay/{{item.$id}}">{{item.name}}</a></span>
+                                    <p>Last updated {{item.timestamp | date:"MM/dd/yyyy 'at' h:mma"}}</p>
                                 </div>
                             </md-list-item>
                         </md-list>
                     </md-content>
                 </md-tab>
 
+                <md-tab label="Shared">
+                    <md-content class="md-padding">
+                        <md-list>
+                            <md-list-item class="md-2-line" ng-repeat="item in vm.otherRef">
+                                <div class="md-list-item-text">
+                                    <span><a ng-href="#/essay/{{item.$id}}">{{item.name}}</a></span>
+                                    <p>Last updated {{item.timestamp}}</p>
+                                </div>
+                            </md-list-item>
+                        </md-list>
+                    </md-content>
+                </md-tab>
             </md-tabs>
         </tri-widget>
     </div>

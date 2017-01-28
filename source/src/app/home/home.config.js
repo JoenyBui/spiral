@@ -33,6 +33,13 @@
                     controller: 'HomeFabController',
                     controllerAs: 'vm'
                 }
+            },
+            resolve: {
+                auth: function($state, Users, Auth){
+                    return Auth.$requireSignIn().catch(function(){
+                        // $state.go('triangular.home');
+                    });
+                }
             }
         });
 

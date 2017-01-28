@@ -6,7 +6,7 @@
         .controller('EssayPageController', EssayPageController);
 
     /* @ngInject */
-    function EssayPageController() {
+    function EssayPageController(loadItem) {
         var vm = this;
 
         vm.text = "";
@@ -26,7 +26,8 @@
 
         // Get Firebase Database reference.
 
-        var firepadRef = firebase.database().ref();
+        // var firepadRef = firebase.database().ref();
+        var firepadRef = loadItem;
         var myElement = angular.element(document.querySelector('#firepad-container'));
 
         //// Create CodeMirror (with lineWrapping on).

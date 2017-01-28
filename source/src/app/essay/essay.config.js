@@ -10,7 +10,7 @@
 
         $stateProvider
         .state('triangular.essay', {
-            url: '/essay',
+            url: '/essay/:essayId',
             templateUrl: 'app/essay/essay.tmpl.html',
             // set the controller to load for this page
             controller: 'EssayPageController',
@@ -21,19 +21,26 @@
                 layout: {
                     contentClass: 'layout-column'
                 }
+            },
+            resolve: {
+                loadItem: function ($stateParams, Auth, Essay) {
+                    return Auth.$requireSignIn().then(function () {
+                        return Essay.getEssay($stateParams.essayId)
+                    });
+                }
             }
         });
 
-        triMenuProvider.addMenu({
-            name: 'Essay Module',
-            icon: 'fa fa-tree',
-            type: 'dropdown',
-            priority: 1.1,
-            children: [{
-                name: 'Start Page',
-                state: 'triangular.essay',
-                type: 'link'
-            }]
-        });
+        // triMenuProvider.addMenu({
+        //     name: 'Essay Module',
+        //     icon: 'fa fa-tree',
+        //     type: 'dropdown',
+        //     priority: 1.1,
+        //     children: [{
+        //         name: 'Start Page',
+        //         state: 'triangular.essay',
+        //         type: 'link'
+        //     }]
+        // });
     }
 })();

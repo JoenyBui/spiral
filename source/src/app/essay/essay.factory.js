@@ -14,7 +14,8 @@
 
         var Essays = {
             getEssay: function (eid) {
-                return $firebaseObject(essaysRef.child(eid))
+                return essaysRef.child(eid);
+                // return $firebaseObject(essaysRef.child(eid))
             },
             all: essays
         };
