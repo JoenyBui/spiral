@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('essay')
+        .module('app.essay')
         .config(moduleConfig);
 
     /* @ngInject */
@@ -11,15 +11,24 @@
         $stateProvider
         .state('triangular.essay', {
             url: '/essay/:essayId',
-            templateUrl: 'app/essay/essay.tmpl.html',
-            // set the controller to load for this page
-            controller: 'EssayPageController',
-            controllerAs: 'vm',
-            // layout-column class added to make footer move to
-            // bottom of the page on short pages
+            views: {
+                '': {
+                    templateUrl: 'app/essay/essay.tmpl.html',
+                    // set the controller to load for this page
+                    controller: 'EssayPageController',
+                    controllerAs: 'vm'
+                },
+                'belowContent': {
+                    templateUrl: 'app/essay/fab-button.tmpl.html',
+                    // set the controller to load for this page
+                    controller: 'EssayFabController',
+                    controllerAs: 'vm'
+                }
+            },
             data: {
                 layout: {
-                    contentClass: 'layout-column'
+                    contentClass: 'layout-column',
+                    footer: false
                 }
             },
             resolve: {

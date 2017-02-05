@@ -9,12 +9,22 @@
     function moduleConfig($stateProvider, triMenuProvider) {
 
         $stateProvider
+        .state('public', {
+            url: '/public',
+            views: {
+                'root': {
+                    templateUrl: 'app/home/cover.html',
+                    controller: 'PublicController',
+                    controllerAs: 'vm'
+                }
+            }
+        })
         .state('triangular.home', {
             url: '/home',
-            templateUrl: 'app/home/home-page.tmpl.html',
-            // set the controller to load for this page
-            controller: 'HomePageController',
-            controllerAs: 'vm',
+            // templateUrl: 'app/home/home-page.tmpl.html',
+            // // set the controller to load for this page
+            // controller: 'HomePageController',
+            // controllerAs: 'vm',
             // layout-column class added to make footer move to
             // bottom of the page on short pages
             data: {

@@ -41,7 +41,7 @@
             'app.examples',
 
             'home',
-            'essay'
+            'app.essay'
         ])
 
         // set a constant for the API we are connecting to

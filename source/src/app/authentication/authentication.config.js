@@ -85,12 +85,12 @@
             controller: 'ProfileController',
             controllerAs: 'vm',
             resolve: {
-                auth: function($state, Users, Auth){
+                auth: function($state, Users, Auth) {
                     return Auth.$requireSignIn().catch(function(){
                         $state.go('triangular.home');
                     });
                 },
-                profile: function(Users, Auth){
+                profile: function(Users, Auth) {
                     return Auth.$requireSignIn().then(function(auth){
                         return Users.getProfile(auth.uid).$loaded();
                     });

@@ -5,7 +5,7 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('app.essay')
         .factory('Essay', EssayFactory);
 
     function EssayFactory($firebaseArray, $firebaseObject) {

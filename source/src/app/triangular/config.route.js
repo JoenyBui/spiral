@@ -47,7 +47,19 @@
                     controllerProvider: function(triLayout) {
                         return triLayout.layout.toolbarController;
                     },
-                    controllerAs: 'vm'
+                    controllerAs: 'vm',
+                    resolve: {
+                        auth: function($state, Users, Auth){
+                            return Auth.$requireSignIn().catch(function(){
+                                $state.go('triangular.home');
+                            });
+                        },
+                        profile: function(Users, Auth){
+                            return Auth.$requireSignIn().then(function(auth){
+                                return Users.getProfile(auth.uid).$loaded();
+                            });
+                        }
+                    }
                 },
                 'loader@triangular': {
                     templateProvider: function($templateRequest, triLayout) {

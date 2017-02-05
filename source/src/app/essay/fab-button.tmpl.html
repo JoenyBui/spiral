@@ -1,0 +1,15 @@
+<md-fab-speed-dial class="md-fab md-accent md-fab-bottom-right"
+                   md-direction="{{vm.fabDirection}}"
+                   md-open="vm.isOpen"
+                   ng-class="vm.fabAnimation">
+    <md-fab-trigger>
+        <md-button aria-label="menu" class="md-fab primary">
+            <md-icon md-font-icon="zmdi zmdi-plus"></md-icon>
+        </md-button>
+    </md-fab-trigger>
+    <md-fab-actions>
+        <md-button aria-label="Invite Friends" class="md-fab md-raised md-mini" ng-click="vm.openShareDialog($event)">
+            <md-icon md-font-icon="zmdi zmdi-share"></md-icon>
+        </md-button>
+    </md-fab-actions>
+</md-fab-speed-dial>

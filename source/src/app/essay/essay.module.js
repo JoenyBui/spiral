@@ -2,6 +2,6 @@
     'use strict';
 
     angular
-        .module('essay', [
+        .module('app.essay', [
         ]);
 })();

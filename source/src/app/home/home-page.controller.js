@@ -11,7 +11,8 @@
 
         vm.ref = firebase.database().ref().child('essays');
 
-        var query = vm.ref.orderByChild('timestamp').limitToLast(25);
+        var query = vm.ref.orderByChild('owner').equalTo(auth.uid);
+        // query = query.orderByChild('timestamp').limitToLast(25);
 
         vm.essayRefs = $firebaseArray(query);
 

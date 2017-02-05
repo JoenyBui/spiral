@@ -6,8 +6,9 @@
         .controller('SignupController', SignupController);
 
     /* @ngInject */
-    function SignupController($scope, $state, $mdToast, $http, $filter, $firebaseAuth, triSettings) {
+    function SignupController($scope, $state, $mdToast, $http, $filter, $firebaseAuth, triSettings, UserService) {
         var vm = this;
+
         vm.triSettings = triSettings;
         vm.signupClick = signupClick;
         vm.user = {
@@ -33,6 +34,7 @@
                 // ).then(function() {
                 //     $state.go('authentication.login');
                 // });
+                UserService.saveProfile(Auth.uid);
 
                 $state.go('home');
             }, function (error){
@@ -47,9 +49,7 @@
                     $state.go('authentication.login');
                 });
 
-                // authCtrl.error = error;
             });
-
         }
     }
 })();
