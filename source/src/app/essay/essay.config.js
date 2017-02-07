@@ -32,9 +32,9 @@
                 }
             },
             resolve: {
-                loadItem: function ($stateParams, Auth, Essay) {
+                loadItem: function ($stateParams, Auth, EssayFactory) {
                     return Auth.$requireSignIn().then(function () {
-                        return Essay.getEssay($stateParams.essayId)
+                        return EssayFactory.getEssay($stateParams.essayId)
                     });
                 }
             }

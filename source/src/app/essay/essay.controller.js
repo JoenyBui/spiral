@@ -14,24 +14,23 @@
             lineNumbers: true,
             indentWithTabs: true
         };
-
+        vm.loadItem = loadItem;
+        
         // Get Firebase Database reference.
-        var firepadRef = loadItem;
+        var firepadRef = loadItem.ref;
 
         vm.obj = $firebaseObject(firepadRef);
         vm.obj.$bindTo($scope, 'item').then(function () {
-            console.log($scope.item);
+            // console.log($scope.item);
 
             vm.obj.$watch(function() {
-                $scope.item.timestamp = new Date().toLocaleString();
+//                 $scope.item.timestamp = new Date().toLocaleString();
             });
         });
 
 
         //// Create CodeMirror (with lineWrapping on).
-        var codeMirror = CodeMirror(
-            document.getElementById('firepad-container'),
-            {
+        var codeMirror = CodeMirror(document.getElementById('firepad-container'), {
                 lineWrapping: true,
                 lineNumber: true
             }
@@ -52,7 +51,7 @@
                 controllerAs: 'vm',
                 templateUrl: 'app/essay/essay.share.dialog.html',
                 locals: {
-                    model: vm.obj
+                    model: vm.loadItem
                 },
                 targetEvent: $event
             }).then(function () {

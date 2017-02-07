@@ -3,30 +3,68 @@
 
     angular
         .module('app.permission')
-        .factory('CurrentUser', CurrentUserFactory)
+        .factory('ProfileFactory', ProfileFactory)
         .factory('UserService', UserService);
 
-    function CurrentUserFactory() {
-        var User = UserFactory || {};
+    function ProfileFactory($firebaseArray, $firebaseObject, $firebaseUtils, Auth) {
+        var profilesRef = firebase.database().ref('profiles');
+        var profiles = $firebaseArray(profilesRef);
+
+        var User = User || {};
 
         User.Current = function () {
-            this.name = null;
-            this.email = null;
-            this.location = null;
-            this.website = null;
-            this.twitter = null;
-            this.bio = null;
-            this.current = null;
-            this.password = null;
-            this.confirm = null;
+            this.name = '';
+            this.location = 'Houston, TX';
+            this.website = '';
+            this.twitter = '';
+            this.bio = '';
+            this.displayName = '';
+            this.avatar = 'assets/images/avatars/avatar-5.png';
+            this.showLocation = false;
+            this.showAvatar = true;
+            this.showUsername = true;
+            this.sendNotification = false;
+            this.makeMyProfilePublic = false;
+
+            this.roles = ['SUPERADMIN'];
         };
 
         User.Current.prototype = {
-            load: function (uid) {
+            load: function (profile) {
+                this.$profile = profile;
 
+                this.name = profile.name;
+                this.location = profile.location;
+                this.website = profile.website;
+                this.bio = profile.bio;
+                this.displayName = profile.displayName;
+                this.avatar = profile.avatar;
+                this.showLocation = profile.showLocation;
+                this.showAvatar = profile.showAvatar;
+                this.showUsername = profile.showUsername;
+                this.sendNotification = profile.sendNotification;
+                this.makeMyProfilePublic = profile.makeMyProfilePublic;
+
+                this.roles = profile.roles;
+            },
+
+            saveProfile: function () {
+                this.$profile.name = this.name;
+                this.$profile.location = this.location;
+                this.$profile.website = this.website;
+                this.$profile.bio = this.bio;
+                this.$profile.displayName = this.displayName;
+                this.$profile.avatar = this.avatar;
+                this.$profile.showLocation = this.showLocation;
+                this.$profile.showAvatar = this.showAvatar;
+                this.$profile.showUsername = this.showUsername;
+                this.$profile.sendNotification = this.sendNotification;
+                this.$profile.makeMyProfilePublic = this.makeMyProfilePublic;
+
+                this.$profile.$save();
             }
         };
-        
+
         return User;
     }
 
@@ -40,26 +78,11 @@
      * @param $http:
      * @param RoleStore:
      * */
-    function UserService($firebaseArray, $firebaseObject, $q, $http, RoleStore, Auth) {
+    function UserService($firebaseArray, $firebaseObject, $q, $http, RoleStore, ProfileFactory, Auth) {
 
         var usersRef = firebase.database().ref('users');
         var users = $firebaseArray(usersRef);
 
-        var currentUser = {
-            name: 'Christos',
-            email: 'info@oxygenna.com',
-            location: 'Sitia, Crete, Greece',
-            website: 'http://www.oxygenna.com',
-            twitter: 'oxygenna',
-            bio: 'We are a small creative web design agency \n who are passionate with our pixels.',
-            current: '',
-            password: '',
-            confirm: '',
-            displayName: 'Christos',
-            username: 'christos',
-            avatar: 'assets/images/avatars/avatar-5.png',
-            roles: ['SUPERADMIN']
-        };
 
         var service = {
             // getProfileAuth: function () {
@@ -67,15 +90,47 @@
             //         return Users.getProfile(auth.uid).$loaded();
             //     });
             // },
+            createProfile: function (uid) {
+                var obj = new ProfileFactory.Current();
+
+                var ref = firebase.database().ref().child('profile');
+                var item = ref.child(uid);
+
+                item.set(obj);
+            },
+
             saveProfile: function (uid) {
                 var user = this.getProfile(uid);
 
-
                 user.$save();
             },
+
             getProfile: function(uid){
-                return $firebaseObject(usersRef.child(uid));
+                // create a reference to the database node where we will store our data
+                var ref = firebase.database().ref('profile');
+                var profileRef = ref.child(uid);
+
+                // return it as a synchronized object.
+                return $firebaseObject(profileRef);
             },
+
+            getProfileObject: function () {
+                var vm = this;
+
+                return Auth.$requireSignIn().then(function(auth){
+                    return vm.getProfile(auth.uid).$loaded().then(
+                        function (userProfile) {
+                            var user = new ProfileFactory.Current();
+
+                            // Finish the loaded profile.
+                            user.load(userProfile);
+
+                            return user;
+                        }
+                    );
+                });
+            },
+
             getDisplayName: function(uid){
                 return users.$getRecord(uid).displayName;
             },
@@ -83,8 +138,10 @@
                 return '//www.gravatar.com/avatar/' + users.$getRecord(uid).emailHash;
             },
             getCurrentUser: function getCurrentUser() {
-                return Auth.$requireSignIn().then(function(){
-                    return Users.getProfile(Auth.uid).$loaded();
+                var vm = this;
+
+                return Auth.$requireSignIn().then(function(Auth){
+                    return vm.getProfile(Auth.uid).$loaded();
                 });
                 // return currentUser;
             },

@@ -59,7 +59,7 @@
             type: 'dropdown',
             priority: 1.1,
             children: [{
-                name: 'Start Page',
+                name: 'Dashboard',
                 state: 'triangular.home',
                 type: 'link'
             }]

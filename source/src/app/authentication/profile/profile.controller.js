@@ -6,8 +6,25 @@
         .controller('ProfileController', ProfileController);
 
     /* @ngInject */
-    function ProfileController($state, md5, auth, profile) {
+    function ProfileController($scope, $firebaseObject, md5, auth, profile, ProfileFactory) {
         var vm = this;
+
+        vm.user = profile;
+        
+//         vm.user = new ProfileFactory.Current();
+
+        // Finish the loaded profile.
+//         profile.then(function (userProfile) {
+//             vm.user.load(userProfile);
+//         });
+
+        // vm.user = profile;
+        // vm.user.$bindTo($scope, 'profile').then(function () {
+        //     vm.user.$watch(function () {
+        //         // Update the changes.
+        //         console.log('Profile');
+        //     })
+        // });
 
         vm.settingsGroups = [{
             name: 'Account Settings',
@@ -40,30 +57,9 @@
                 enabled: true
             }]
         }];
-        vm.user = profile;
-
-        // vm.user = {
-        //     name: 'Christos',
-        //     email: 'info@oxygenna.com',
-        //     location: 'Sitia, Crete, Greece',
-        //     website: 'http://www.oxygenna.com',
-        //     twitter: 'oxygenna',
-        //     bio: 'We are a small creative web design agency \n who are passionate with our pixels.',
-        //     current: '',
-        //     password: '',
-        //     confirm: ''
-        // };
 
         vm.updateProfile = function(){
-            // vm.profile.name = vm.user.name;
-            // vm.profile.email = vm.user.email;
-            // vm.profile.location = vm.user.location;
-            // vm.profile.website = vm.user.website;
-            // vm.profile.twitter = vm.user.twitter;
-            // vm.profile.bio = vm.user.bio;
-
-            vm.user.emailHash = md5.createHash(auth.email);
-            vm.user.$save();
+            vm.user.saveProfile();
         };
     }
 })();

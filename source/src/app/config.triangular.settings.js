@@ -16,9 +16,9 @@
 
         // set current version of app (shown in footer)
         triSettingsProvider.setVersion('2.8.0');
-        
+
         // set the document title that appears on the browser tab
-        triRouteProvider.setTitle('Triangular');
+        triRouteProvider.setTitle('We Spiral');
         triRouteProvider.setSeparator('|');
     }
 })();

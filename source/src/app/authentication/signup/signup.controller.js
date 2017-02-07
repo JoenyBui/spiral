@@ -23,20 +23,23 @@
         function signupClick() {
             var Auth = $firebaseAuth();
 
-            Auth.$createUserWithEmailAndPassword(vm.user.email, vm.user.password).then(function (user){
-                // $mdToast.show(
-                //     $mdToast.simple()
-                //         .content($filter('triTranslate')('Confirmation sent'))
-                //         .position('bottom right')
-                //         .action($filter('triTranslate')('Login'))
-                //         .highlightAction(true)
-                //         .hideDelay(0)
-                // ).then(function() {
-                //     $state.go('authentication.login');
-                // });
-                UserService.saveProfile(Auth.uid);
+            Auth.$createUserWithEmailAndPassword(vm.user.email, vm.user.password)
+            .then(function (auth){
 
-                $state.go('home');
+                UserService.createProfile(auth.uid);
+
+                $mdToast.show(
+                    $mdToast.simple()
+                        .content($filter('triTranslate')('Confirmation sent'))
+                        .position('bottom right')
+                        .action($filter('triTranslate')('Login'))
+                        .highlightAction(true)
+                        .hideDelay(0)
+                ).then(function() {
+                    $state.go('authentication.login');
+                });
+
+                // $state.go('home');
             }, function (error){
                 $mdToast.show(
                     $mdToast.simple()

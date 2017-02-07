@@ -90,41 +90,51 @@
                         $state.go('triangular.home');
                     });
                 },
-                profile: function(Users, Auth) {
+                profile: function(UserService, Auth, ProfileFactory) {
                     return Auth.$requireSignIn().then(function(auth){
-                        return Users.getProfile(auth.uid).$loaded();
+                        return UserService.getProfile(auth.uid).$loaded().then(
+                            function (userProfile) {
+                                var user = new ProfileFactory.Current();
+
+                                // Finish the loaded profile.
+                               
+                                user.load(userProfile);
+
+                                return user;
+                            }
+                        );
                     });
                 }
             }
         });
 
-        triMenuProvider.addMenu({
-            name: 'Authentication',
-            icon: 'zmdi zmdi-account',
-            type: 'dropdown',
-            priority: 4.1,
-            permission: 'viewAuthentication',
-            children: [{
-                name: 'Login',
-                state: 'authentication.login',
-                type: 'link'
-            },{
-                name: 'Sign Up',
-                state: 'authentication.signup',
-                type: 'link'
-            },{
-                name: 'Forgot Password',
-                state: 'authentication.forgot',
-                type: 'link'
-            },{
-                name: 'Lock Page',
-                state: 'authentication.lock',
-                type: 'link'
-            },{
-                name: 'Profile',
-                state: 'triangular.profile',
-                type: 'link'
-            }]
-        });
+        // triMenuProvider.addMenu({
+        //     name: 'Authentication',
+        //     icon: 'zmdi zmdi-account',
+        //     type: 'dropdown',
+        //     priority: 4.1,
+        //     permission: 'viewAuthentication',
+        //     children: [{
+        //         name: 'Login',
+        //         state: 'authentication.login',
+        //         type: 'link'
+        //     },{
+        //         name: 'Sign Up',
+        //         state: 'authentication.signup',
+        //         type: 'link'
+        //     },{
+        //         name: 'Forgot Password',
+        //         state: 'authentication.forgot',
+        //         type: 'link'
+        //     },{
+        //         name: 'Lock Page',
+        //         state: 'authentication.lock',
+        //         type: 'link'
+        //     },{
+        //         name: 'Profile',
+        //         state: 'triangular.profile',
+        //         type: 'link'
+        //     }]
+        // });
     }
 })();

@@ -21,7 +21,7 @@
                                 <div ng-message when="required"><span translate>Please enter your name</span></div>
                             </div>
                         </md-input-container>
-                        <md-input-container class="md-block">
+<!--                         <md-input-container class="md-block">
                             <label for="email" translate>email</label>
                             <input id="email" label="email" name="email" type="email" ng-model="vm.user.email" required/>
                             <div ng-messages="profile.email.$error" md-auto-hide="false" ng-show="profile.email.$touched">
@@ -32,7 +32,7 @@
                                     <span translate>Please enter a valid email address</span>
                                 </div>
                             </div>
-                        </md-input-container>
+                        </md-input-container> -->
 
                         <md-input-container class="md-block">
                             <label for="location" translate>location</label>
@@ -95,7 +95,7 @@
                             </md-list-item>
                         </div>
                     </md-list>
-                    <md-button class="md-raised md-primary margin-left-0" ng-disabled="profile.$invalid" translate="Update Settings"></md-button>
+                    <md-button class="md-raised md-primary margin-left-0" ng-disabled="profile.$invalid" translate="Update Settings" ng-click="vm.updateProfile()"></md-button>
                 </md-content>
             </md-tab>
         </md-tabs>

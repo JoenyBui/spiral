@@ -6,7 +6,7 @@
         .controller('HomePageController', HomePageController);
 
     /* @ngInject */
-    function HomePageController($scope, $mdDialog, $firebaseArray, $firebaseObject, $state, auth) {
+    function HomePageController($scope, $mdDialog, $firebaseArray, $firebaseObject, $state, EssayFactory, auth) {
         var vm = this;
 
         vm.ref = firebase.database().ref().child('essays');
@@ -35,12 +35,14 @@
 
 
         $scope.$on('addNewEssay', function (event, $event) {
-            var obj = {
-                name: "Untitled document",
-                owner: auth.uid,
-                timestamp: new Date().toLocaleString()
-            };
+//             var obj = {
+//                 name: "Untitled document",
+//                 owner: auth.uid,
+//                 timestamp: new Date().toLocaleString()
+//             };
 
+            var obj = new EssayFactory.Essay(auth.uid);
+            
             // Add to record.
             vm.essayRefs.$add(
                 obj

@@ -21,7 +21,7 @@
         vm.isFullScreen = false;
         vm.fullScreenIcon = 'zmdi zmdi-fullscreen';
         vm.toggleFullScreen = toggleFullScreen;
-        vm.currentUser = UserService.getCurrentUser();
+        vm.currentUser = UserService.getProfileObject();
 
         ////////////////
 
