@@ -27,6 +27,8 @@
             .then(function (auth){
 
                 UserService.createProfile(auth.uid);
+                UserService.createUser(auth.uid);
+                UserService.saveEmailKey(auth.uid, auth.email);
 
                 $mdToast.show(
                     $mdToast.simple()

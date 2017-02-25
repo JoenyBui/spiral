@@ -83,6 +83,22 @@
         var usersRef = firebase.database().ref('users');
         var users = $firebaseArray(usersRef);
 
+        var currentUser = {
+            name: 'Christos',
+            email: 'info@oxygenna.com',
+            location: 'Sitia, Crete, Greece',
+            website: 'http://www.oxygenna.com',
+            twitter: 'oxygenna',
+            bio: 'We are a small creative web design agency \n who are passionate with our pixels.',
+            current: '',
+            password: '',
+            confirm: '',
+            displayName: 'Christos',
+            username: 'christos',
+            avatar: 'assets/images/avatars/avatar-5.png',
+            roles: ['SUPERADMIN']
+        };
+
 
         var service = {
             // getProfileAuth: function () {
@@ -90,6 +106,30 @@
             //         return Users.getProfile(auth.uid).$loaded();
             //     });
             // },
+            saveEmailKey: function (uid, email) {
+                var emailKey = encodeURIComponent(email).replace(/\./g, '%2E');
+
+                var ref = firebase.database().ref().child('emailMap');
+                var item = ref.child(emailKey);
+
+                var obj = $firebaseObject(item);
+
+                obj.$loaded().then(function () {
+                    obj.uid = uid;
+                    obj.$save();
+                });
+            },
+            decodeEmail: function (email) {
+                return decodeURIComponent(email);
+            },
+            createUser: function (uid) {
+                var ref = firebase.database().ref().child('users');
+                var item = ref.child(uid);
+
+                item.set({
+                    sharedEssays: [null]
+                })
+            },
             createProfile: function (uid) {
                 var obj = new ProfileFactory.Current();
 
@@ -98,13 +138,11 @@
 
                 item.set(obj);
             },
-
             saveProfile: function (uid) {
                 var user = this.getProfile(uid);
 
                 user.$save();
             },
-
             getProfile: function(uid){
                 // create a reference to the database node where we will store our data
                 var ref = firebase.database().ref('profile');
@@ -113,7 +151,6 @@
                 // return it as a synchronized object.
                 return $firebaseObject(profileRef);
             },
-
             getProfileObject: function () {
                 var vm = this;
 
@@ -130,7 +167,6 @@
                     );
                 });
             },
-
             getDisplayName: function(uid){
                 return users.$getRecord(uid).displayName;
             },

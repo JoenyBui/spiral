@@ -38,6 +38,36 @@
                     });
                 }
             }
+        })
+        .state('triangular.essay.shared', {
+            url: '/essay/shared/:essayId',
+            views: {
+                '': {
+                    templateUrl: 'app/essay/essay.tmpl.html',
+                    // set the controller to load for this page
+                    controller: 'EssayPageController',
+                    controllerAs: 'vm'
+                },
+                'belowContent': {
+                    templateUrl: 'app/essay/fab-button.tmpl.html',
+                    // set the controller to load for this page
+                    controller: 'EssayFabController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                layout: {
+                    contentClass: 'layout-column',
+                    footer: false
+                }
+            },
+            resolve: {
+                loadItem: function ($stateParams, Auth, EssayFactory) {
+                    return Auth.$requireSignIn().then(function () {
+                        return EssayFactory.getEssay($stateParams.essayId)
+                    });
+                }
+            }
         });
 
         // triMenuProvider.addMenu({

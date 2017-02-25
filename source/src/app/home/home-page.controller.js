@@ -6,7 +6,7 @@
         .controller('HomePageController', HomePageController);
 
     /* @ngInject */
-    function HomePageController($scope, $mdDialog, $firebaseArray, $firebaseObject, $state, EssayFactory, auth) {
+    function HomePageController($scope, $mdDialog, $firebaseArray, $firebaseObject, $state, EssayFactory, auth, Users) {
         var vm = this;
 
         vm.ref = firebase.database().ref().child('essays');
@@ -32,7 +32,25 @@
 
             }
         );
-
+        //
+        // function initChat(user) {
+        //     // Get a Firebase Database ref
+        //     var chatRef = firebase.database().ref("chat");
+        //
+        //     // Create a Firechat instance
+        //     var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+        //
+        //     Users.getCurrentProfile().then(function(user) {
+        //         user.$loaded()
+        //             .then(function (data) {
+        //                 // Set the Firechat user
+        //                 chat.setUser(user.$id, user.displayName);
+        //                 console.log('Data', data);
+        //             }).catch(function (error) {
+        //                 console.error("Error, ", error);
+        //         });
+        //     })
+        // }
 
         $scope.$on('addNewEssay', function (event, $event) {
 //             var obj = {
@@ -42,7 +60,7 @@
 //             };
 
             var obj = new EssayFactory.Essay(auth.uid);
-            
+
             // Add to record.
             vm.essayRefs.$add(
                 obj
@@ -55,5 +73,7 @@
                 )
             });
         });
+        //
+        // initChat(auth);
     }
 })();

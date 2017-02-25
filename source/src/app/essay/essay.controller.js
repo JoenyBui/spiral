@@ -6,7 +6,7 @@
         .controller('EssayPageController', EssayPageController);
 
     /* @ngInject */
-    function EssayPageController($scope, $firebaseObject, $mdDialog, loadItem) {
+    function EssayPageController($scope, $firebaseObject, $mdDialog, $mdToast, loadItem) {
         var vm = this;
 
         vm.editorOptions = {
@@ -15,14 +15,12 @@
             indentWithTabs: true
         };
         vm.loadItem = loadItem;
-        
+
         // Get Firebase Database reference.
         var firepadRef = loadItem.ref;
 
         vm.obj = $firebaseObject(firepadRef);
         vm.obj.$bindTo($scope, 'item').then(function () {
-            // console.log($scope.item);
-
             vm.obj.$watch(function() {
 //                 $scope.item.timestamp = new Date().toLocaleString();
             });
@@ -54,7 +52,7 @@
                     model: vm.loadItem
                 },
                 targetEvent: $event
-            }).then(function () {
+            }).then(function (sharedUsers) {
                 // pop a toast
                 // $mdToast.show(
                 //   $mdToast.simple()
@@ -63,7 +61,20 @@
                 //     .hideDelay(2000)
                 // )
             })
-        })
+        });
 
+        $scope.$on('addToAuthorizedUser', function ($event, id) {
+            //TODO: Check if the user already exists.
+            $scope.item.authorizedUsers.push(id);
+
+            $mdToast.show(
+                $mdToast.simple(id + ' id just added.')
+                    .content()
+                    .position('bottom right')
+                    .action($filter('triTranslate')('Login'))
+                    .highlightAction(true)
+                    .hideDelay(0)
+            );
+        });
     }
 })();

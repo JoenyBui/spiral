@@ -51,6 +51,20 @@
                     });
                 }
             }
+        })
+        .state('triangular.chat', {
+            url: '/chat',
+            templateUrl: 'app/home/chat-page.tmpl.html',
+            controller: 'ChatPageController',
+            controllerAs: 'vm',
+            resolve: {
+                auth: function($state, Users, Auth){
+                    return Auth.$requireSignIn().catch(function(){
+                        // $state.go('triangular.home');
+                    });
+                }
+            }
+
         });
 
         triMenuProvider.addMenu({
@@ -61,6 +75,10 @@
             children: [{
                 name: 'Dashboard',
                 state: 'triangular.home',
+                type: 'link'
+            }, {
+                name: 'Chat',
+                state: 'triangular.chat',
                 type: 'link'
             }]
         });
