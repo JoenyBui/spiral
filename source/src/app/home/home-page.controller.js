@@ -9,13 +9,44 @@
     function HomePageController($scope, $mdDialog, $firebaseArray, $firebaseObject, $state, EssayFactory, auth, Users, userEssays) {
         var vm = this;
 
+
         // vm.ref = firebase.database().ref().child('essay');
 
         // var query = vm.ref.orderByChild('owner').equalTo(auth.uid);
         // query = query.orderByChild('timestamp').limitToLast(25);
 
+        var ref = firebase.database().ref().child('user').child(auth.uid);
+
         vm.essayRefs = userEssays.ownedEssays;
-        vm.otherRefs = userEssays.sharedEssays;
+        vm.otherRefs = [];
+
+        // List the names of all Mary's groups
+        // var ref = new Firebase("https://docs-examples.firebaseio.com/web/org");
+
+        // fetch a list of shared essays.
+        ref.child('sharedEssays').on('child_added', function (snapshot) {
+            // for each group, fetch the essay
+            var key = snapshot.val();
+            firebase.database().ref().child('essay').child(key).once('value', function (snapshot) {
+                    var obj = snapshot.val();
+                    obj.key = snapshot.key;
+                
+                    vm.otherRefs.push(obj);
+                }
+            )
+        });
+
+        // fetch a list of Mary's groups
+        // ref.child("users/mchen/groups").on('child_added', function(snapshot) {
+        //     // for each group, fetch the name and print it
+        //     list = snapshot.key();
+        //     ref.child("groups/" + groupKey + "/name").once('value', function(snapshot) {
+        //         System.out.println("Mary is a member of this group: " + snapshot.val());
+        //     });
+        // });
+
+
+        // vm.otherRefs = userEssays.sharedEssays;
 
         // vm.essayRefs = $firebaseArray(query);
 

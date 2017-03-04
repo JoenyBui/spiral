@@ -39,8 +39,8 @@
                 }
             }
         })
-        .state('triangular.essay.shared', {
-            url: '/essay/shared/:essayId',
+        .state('triangular.essay-shared', {
+            url: '/essay-shared/:essayId',
             views: {
                 '': {
                     templateUrl: 'app/essay/essay.tmpl.html',

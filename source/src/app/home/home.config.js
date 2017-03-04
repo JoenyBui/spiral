@@ -56,7 +56,7 @@
 
                     return $firebaseArray(query).$loaded();
                 },
-                sharedLists: function(auth, $q) {
+                sharedEssays: function(auth, $q) {
                     var deferred = $q.defer();
 
                     var ref = firebase.database().ref().child('user').child(auth.uid);
@@ -68,30 +68,30 @@
 
                     return deferred.promise;
                 },
-                sharedEssays: function ($q, auth, $firebaseArray, sharedLists) {
-//                     var ref = firebase.database().ref().child('user').child(auth.uid);
-//                     var query = ref.child('sharedEssays');
-                    var deferred = $q.defer();
-
-                    var ref = firebase.database().ref().child('essay');
-                    var list = $firebaseArray(ref);
-
-                    // list.$$getRecord(sharedLists).then(function(data) {
-                    //     deferred.resolve(list);
-                    // });
-                    list.$loaded().then(function (data) {
-                        deferred.resolve(list.$getRecord(sharedLists));
-                    });
-
-                    return deferred.promise;
-
-//                     for (var i in sharedLists) {
-//                         var item = sharedLists[i];
-
-//                         var query = ref.;
-//                     }
-                    // return $firebaseArray(query).$loaded();
-                },
+//                 sharedEssays: function ($q, auth, $firebaseArray, sharedLists) {
+// //                     var ref = firebase.database().ref().child('user').child(auth.uid);
+// //                     var query = ref.child('sharedEssays');
+//                     var deferred = $q.defer();
+//
+//                     var ref = firebase.database().ref().child('essay');
+//                     var list = $firebaseArray(ref);
+//
+//                     // list.$$getRecord(sharedLists).then(function(data) {
+//                     //     deferred.resolve(list);
+//                     // });
+//                     list.$loaded().then(function (data) {
+//                         deferred.resolve(list.$getRecord(sharedLists));
+//                     });
+//
+//                     return deferred.promise;
+//
+// //                     for (var i in sharedLists) {
+// //                         var item = sharedLists[i];
+//
+// //                         var query = ref.;
+// //                     }
+//                     // return $firebaseArray(query).$loaded();
+//                 },
                 userEssays: function (ownedEssays, sharedEssays) {
                     return {
                         ownedEssays: ownedEssays,

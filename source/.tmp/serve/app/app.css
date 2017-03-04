@@ -20876,6 +20876,13 @@ md-select[md-container-class="calendar-color-select"] md-select-value span {
   min-width: 500px;
   background-color: white; }
 
+.md-select-form {
+  display: inline-block;
+  margin-top: 2px;
+  width: 100%; }
+  .md-select-form span {
+    width: 100%; }
+
 .extras-gallery-container {
   height: 100%; }
 
@@ -20991,13 +20998,6 @@ md-select[md-container-class="calendar-color-select"] md-select-value span {
       top: 0;
       -webkit-transform: rotate(90deg) translateX(0%) !important;
               transform: rotate(90deg) translateX(0%) !important; } }
-
-.md-select-form {
-  display: inline-block;
-  margin-top: 2px;
-  width: 100%; }
-  .md-select-form span {
-    width: 100%; }
 
 .github-user-dropdown img {
   width: 40px;
