@@ -9,25 +9,29 @@
         .factory('EssayFactory', EssayFactory);
 
     function EssayFactory($firebaseArray, $firebaseObject) {
-        var essaysRef = firebase.database().ref('essays');
+        var essaysRef = firebase.database().ref('essay');
         var essays = $firebaseArray(essaysRef);
 
         var EssayFactory = {
             getEssay: function (eid) {
-                var essay = new EssayFactory.Essay();
-                essay.eid = eid;
-                essay.ref = essaysRef.child(eid);
+                // var essay = new EssayFactory.Essay();
+                // essay.eid = eid;
+                // essay.ref = essaysRef.child(eid);
 
                 // Load the object to load the extra data.
-                var obj = $firebaseObject(essay.ref);
-
-                obj.$loaded(function (data) {
-                    essay.load(data);
-                });
-
-                return essay;
+//                 var obj = $firebaseObject(essay.ref);
+                var obj = $firebaseObject(essaysRef.child(eid));
+                return obj.$loaded();
+                // obj.$loaded(function (data) {
+                //     essay.load(data);
+                // });
+                //
+                // return essay;
 //                 return essaysRef.child(eid);
                 // return $firebaseObject(essaysRef.child(eid))
+            },
+            getRef: function (eid) {
+                return essaysRef.child(eid);
             },
             all: essays
         };

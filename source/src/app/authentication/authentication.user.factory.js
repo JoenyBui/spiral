@@ -6,13 +6,19 @@
         .factory('Users', UsersFactory);
 
     function UsersFactory($q, $firebaseArray, $firebaseObject, Auth) {
-        var usersRef = firebase.database().ref('users');
+        var usersRef = firebase.database().ref('user');
         var profileRef = firebase.database().ref('profile');
         var emailMapRef = firebase.database().ref('emailMap');
 
         var users = $firebaseArray(usersRef);
 
         var Users = {
+            usersRef: usersRef,
+            profileRef: profileRef,
+            emailMapRef: emailMapRef,
+            shareEssayToUser: function () {
+
+            },
             getProfile: function(uid){
                 return $firebaseObject(profileRef.child(uid));
             },

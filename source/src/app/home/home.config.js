@@ -49,6 +49,54 @@
                     return Auth.$requireSignIn().catch(function(){
                         // $state.go('triangular.home');
                     });
+                },
+                ownedEssays: function (auth, $firebaseArray) {
+                    var ref = firebase.database().ref().child('essay');
+                    var query = ref.orderByChild('owner').equalTo(auth.uid);
+
+                    return $firebaseArray(query).$loaded();
+                },
+                sharedLists: function(auth, $q) {
+                    var deferred = $q.defer();
+
+                    var ref = firebase.database().ref().child('user').child(auth.uid);
+                    var query = ref.child('sharedEssays');
+
+                    query.once('value', function (snapshot) {
+                        deferred.resolve(snapshot.val());
+                    });
+
+                    return deferred.promise;
+                },
+                sharedEssays: function ($q, auth, $firebaseArray, sharedLists) {
+//                     var ref = firebase.database().ref().child('user').child(auth.uid);
+//                     var query = ref.child('sharedEssays');
+                    var deferred = $q.defer();
+
+                    var ref = firebase.database().ref().child('essay');
+                    var list = $firebaseArray(ref);
+
+                    // list.$$getRecord(sharedLists).then(function(data) {
+                    //     deferred.resolve(list);
+                    // });
+                    list.$loaded().then(function (data) {
+                        deferred.resolve(list.$getRecord(sharedLists));
+                    });
+
+                    return deferred.promise;
+
+//                     for (var i in sharedLists) {
+//                         var item = sharedLists[i];
+
+//                         var query = ref.;
+//                     }
+                    // return $firebaseArray(query).$loaded();
+                },
+                userEssays: function (ownedEssays, sharedEssays) {
+                    return {
+                        ownedEssays: ownedEssays,
+                        sharedEssays: sharedEssays
+                    }
                 }
             }
         })

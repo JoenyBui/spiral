@@ -80,7 +80,7 @@
      * */
     function UserService($firebaseArray, $firebaseObject, $q, $http, RoleStore, ProfileFactory, Auth) {
 
-        var usersRef = firebase.database().ref('users');
+        var usersRef = firebase.database().ref('user');
         var users = $firebaseArray(usersRef);
 
         var currentUser = {
@@ -98,8 +98,7 @@
             avatar: 'assets/images/avatars/avatar-5.png',
             roles: ['SUPERADMIN']
         };
-
-
+        
         var service = {
             // getProfileAuth: function () {
             //     return Auth.$requireSignIn().then(function(auth){
@@ -123,15 +122,18 @@
                 return decodeURIComponent(email);
             },
             createUser: function (uid) {
-                var ref = firebase.database().ref().child('users');
+                var ref = firebase.database().ref().child('user');
                 var item = ref.child(uid);
 
                 item.set({
                     sharedEssays: [null]
                 })
             },
-            createProfile: function (uid) {
+            createProfile: function (uid, name) {
                 var obj = new ProfileFactory.Current();
+
+                obj.name = name;
+                obj.displayName = name;
 
                 var ref = firebase.database().ref().child('profile');
                 var item = ref.child(uid);

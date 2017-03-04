@@ -15,6 +15,7 @@
             url: '#',
             login: function() {
                 var auth = $firebaseAuth();
+                var provider = new firebase.auth.TwitterAuthProvider();
 
                 // login with Facebook
                 auth.$signInWithPopup("twitter").then(function(firebaseUser) {
@@ -30,9 +31,10 @@
             url: '#',
             login: function() {
                 var auth = $firebaseAuth();
+                var provider = new firebase.auth.FacebookAuthProvider();
 
                 // login with Facebook
-                auth.$signInWithPopup("facebook").then(function(firebaseUser) {
+                auth.$signInWithPopup(provider).then(function(firebaseUser) {
                     $state.go('triangular.home');
                 }).catch(function(error) {
                     console.log("Authentication failed:", error);
@@ -45,29 +47,30 @@
             url: '#',
             login: function() {
                 var auth = $firebaseAuth();
+                var provider = new firebase.auth.GoogleAuthProvider();
 
-                // login with Facebook
-                auth.$signInWithPopup("google").then(function(firebaseUser) {
+                // login with Google+
+                auth.$signInWithPopup(provider).then(function(firebaseUser) {
                     $state.go('triangular.home');
                 }).catch(function(error) {
                     console.log("Authentication failed:", error);
                 });
 
             }
-        },{
-            icon: 'fa fa-linkedin',
-            color: '#337ab7',
-            url: '#',
-            login: function() {
-                var auth = $firebaseAuth();
-
-                // login with Facebook
-                auth.$signInWithPopup("linkedin").then(function(firebaseUser) {
-                    $state.go('triangular.home');
-                }).catch(function(error) {
-                    console.log("Authentication failed:", error);
-                });
-            }
+        // },{
+        //     icon: 'fa fa-linkedin',
+        //     color: '#337ab7',
+        //     url: '#',
+        //     login: function() {
+        //         var auth = $firebaseAuth();
+        //
+        //         // login with Facebook
+        //         auth.$signInWithPopup("linkedin").then(function(firebaseUser) {
+        //             $state.go('triangular.home');
+        //         }).catch(function(error) {
+        //             console.log("Authentication failed:", error);
+        //         });
+        //     }
         }];
         vm.triSettings = triSettings;
         // create blank user variable for login form

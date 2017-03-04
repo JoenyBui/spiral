@@ -26,7 +26,7 @@
             Auth.$createUserWithEmailAndPassword(vm.user.email, vm.user.password)
             .then(function (auth){
 
-                UserService.createProfile(auth.uid);
+                UserService.createProfile(auth.uid, vm.user.name);
                 UserService.createUser(auth.uid);
                 UserService.saveEmailKey(auth.uid, auth.email);
 
@@ -45,7 +45,7 @@
             }, function (error){
                 $mdToast.show(
                     $mdToast.simple()
-                        .content(error)
+                        .content(" " + error)
                         .position('bottom right')
                         .action($filter('triTranslate')('Login'))
                         .highlightAction(true)

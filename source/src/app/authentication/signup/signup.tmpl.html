@@ -1,5 +1,5 @@
 <div layout="row" flex layout-padding layout-fill layout-align="center center">
-    <div flex="40" flex-lg="50" flex-md="70" flex-xs="100">
+    <div flex="40" flex-lg="50" flex-md="70" flex-sm="70" flex-xs="100">
         <md-card>
             <md-toolbar class="padding-20">
                 <div layout="row" layout-align="center center">
@@ -66,9 +66,16 @@
                         </ng-messages>
                     </md-input-container>
 
-                    <md-button class="md-raised md-primary full-width margin-left-0 margin-right-0 margin-top-10 margin-bottom-10" ng-click="vm.signupClick()" ng-disabled="signup.$invalid" translate="Sign Up" aria-label="{{'Sign Up' | triTranslate}}"></md-button>
+                    <md-button class="md-raised md-primary full-width margin-left-0 margin-right-0 margin-top-10 margin-bottom-10"
+                               ng-click="vm.signupClick()"
+                               ng-disabled="signup.$invalid"
+                               translate="Sign Up"
+                               aria-label="{{'Sign Up' | triTranslate}}"></md-button>
 
-                    <md-button  class="md-primary full-width margin-left-0 margin-right-0 margin-top-10 margin-bottom-10" href="#/login" translate="Already have an account? Login here." aria-label="{{'Already have an account? Login here.' | triTranslate}}"></md-button>
+                    <md-button  class="md-primary full-width margin-left-0 margin-right-0 margin-top-10 margin-bottom-10"
+                                href="#/login"
+                                translate="Already have an account? Login here."
+                                aria-label="{{'Already have an account? Login here.' | triTranslate}}"></md-button>
 
                 </form>
             </md-content>

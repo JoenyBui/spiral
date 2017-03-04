@@ -21,7 +21,7 @@
                 <md-tab label="Shared">
                     <md-content class="md-padding">
                         <md-list>
-                            <md-list-item class="md-2-line" ng-repeat="item in vm.otherRef">
+                            <md-list-item class="md-2-line" ng-repeat="item in vm.otherRefs">
                                 <div class="md-list-item-text">
                                     <span><a ng-href="#/essay/{{item.$id}}">{{item.name}}</a></span>
                                     <p>Last updated {{item.timestamp}}</p>
@@ -37,7 +37,8 @@
                     md-component-id="right"
                     md-is-locked-open="$mdMedia('gt-md')">
 
-            <tri-widget chat-widget flex class="widget-chat" title="Chat" content-layout="column" content-layout-align="space-between">
+            <tri-widget chat-widget flex class="widget-chat" title="Chat" content-layout="column"
+                        content-layout-align="space-between">
                 <md-divider></md-divider>
                 <md-list class="padding-top-20 padding-bottom-0" flex>
                     <md-list-item ng-repeat="chat in ::conversation"

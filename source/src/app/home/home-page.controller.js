@@ -6,32 +6,35 @@
         .controller('HomePageController', HomePageController);
 
     /* @ngInject */
-    function HomePageController($scope, $mdDialog, $firebaseArray, $firebaseObject, $state, EssayFactory, auth, Users) {
+    function HomePageController($scope, $mdDialog, $firebaseArray, $firebaseObject, $state, EssayFactory, auth, Users, userEssays) {
         var vm = this;
 
-        vm.ref = firebase.database().ref().child('essays');
+        // vm.ref = firebase.database().ref().child('essay');
 
-        var query = vm.ref.orderByChild('owner').equalTo(auth.uid);
+        // var query = vm.ref.orderByChild('owner').equalTo(auth.uid);
         // query = query.orderByChild('timestamp').limitToLast(25);
 
-        vm.essayRefs = $firebaseArray(query);
+        vm.essayRefs = userEssays.ownedEssays;
+        vm.otherRefs = userEssays.sharedEssays;
+
+        // vm.essayRefs = $firebaseArray(query);
 
         // download the data from a Firebase reference into a (pseudo read-only) array
         // add server changes are applied in realtime
         // vm.essayRefs = $firebaseArray(vm.ref);
 
-        vm.essayRefs.$loaded().then(
-            function () {
-                // Create a query for the most recent 25 messages on the server.
-                var query = vm.ref.orderByChild('timestamp').limitToLast(25);
-
-                // The $firebaseArray service properly handles database queries as well.
-                vm.filteredEssarys = $firebaseArray(query);
-            }
-        ).catch(function (error) {
-
-            }
-        );
+        // vm.essayRefs.$loaded().then(
+        //     function () {
+        //         // Create a query for the most recent 25 messages on the server.
+        //         var query = vm.ref.orderByChild('timestamp').limitToLast(25);
+        //
+        //         // The $firebaseArray service properly handles database queries as well.
+        //         vm.filteredEssarys = $firebaseArray(query);
+        //     }
+        // ).catch(function (error) {
+        //
+        //     }
+//         );
         //
         // function initChat(user) {
         //     // Get a Firebase Database ref

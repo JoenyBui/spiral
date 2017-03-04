@@ -6,7 +6,7 @@
         .controller('EssayPageController', EssayPageController);
 
     /* @ngInject */
-    function EssayPageController($scope, $firebaseObject, $mdDialog, $mdToast, loadItem) {
+    function EssayPageController($scope, $firebaseObject, $mdDialog, $mdToast, Users, EssayFactory, loadItem) {
         var vm = this;
 
         vm.editorOptions = {
@@ -16,16 +16,23 @@
         };
         vm.loadItem = loadItem;
 
-        // Get Firebase Database reference.
-        var firepadRef = loadItem.ref;
 
-        vm.obj = $firebaseObject(firepadRef);
-        vm.obj.$bindTo($scope, 'item').then(function () {
-            vm.obj.$watch(function() {
+//         vm.obj = $firebaseObject(firepadRef);
+//         vm.obj.$bindTo($scope, 'item').then(function () {
+//             vm.obj.$watch(function() {
+// //                 $scope.item.timestamp = new Date().toLocaleString();
+//             });
+//         });
+
+        // Get Firebase Database reference.
+        var firepadRef = EssayFactory.getRef(vm.loadItem.$id);
+        
+//         vm.obj = $firebaseObject(vm.loadItem);
+        vm.loadItem.$bindTo($scope, 'item').then(function () {
+            vm.loadItem.$watch(function() {
 //                 $scope.item.timestamp = new Date().toLocaleString();
             });
         });
-
 
         //// Create CodeMirror (with lineWrapping on).
         var codeMirror = CodeMirror(document.getElementById('firepad-container'), {
@@ -42,6 +49,12 @@
         }).on('synced', function (isSynced) {
             $scope.item.timestamp = new Date().toLocaleString();
         });
+      
+        // Create FirepadUserList (with our desired userId).
+//         var firepadUserList = FirepadUserList.fromDiv(
+//             firepadRef.child('users'),
+//             document.getElementById('userlist'), userId
+//         );
 
         $scope.$on('openShareDialog', function (event, $event) {
             $mdDialog.show({
@@ -67,11 +80,22 @@
             //TODO: Check if the user already exists.
             $scope.item.authorizedUsers.push(id);
 
+            var obj = $firebaseObject(Users.usersRef.child(id));
+
+            obj.$loaded().then(function () {
+                if (obj.sharedEssays == undefined) {
+                    obj.sharedEssays = [$scope.item.$id];
+                } else {
+                    obj.sharedEssays.push($scope.item.$id);
+                }
+                
+                obj.$save();
+            });
+
             $mdToast.show(
                 $mdToast.simple(id + ' id just added.')
                     .content()
                     .position('bottom right')
-                    .action($filter('triTranslate')('Login'))
                     .highlightAction(true)
                     .hideDelay(0)
             );
