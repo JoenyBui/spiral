@@ -8,7 +8,7 @@
         .module('app')
         .directive('fireChatBox', fireChatBox);
 
-    function fireChatBox(auth) {
+    function fireChatBox() {
 
         var directive = {
             restrict: 'E',
@@ -50,6 +50,18 @@
             }
 
             initChat(auth);
+        }
+
+        function Controller() {
+            var vm = this;
+
+            this.setMenu = function(menu) {
+                vm.menu = menu;
+            };
+
+            this.setLoading = function(loading) {
+                vm.loading = loading;
+            };
         }
     }
 
