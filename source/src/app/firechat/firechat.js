@@ -9,7 +9,7 @@
 
     angular
         .module('app')
-        .factory('Firechat', Firechat);
+        .factory('Firechat', FirechatFactory);
 
     function FirechatFactory() {
 
@@ -61,7 +61,7 @@
         };
 
         // Export the Firechat object as a global.
-        root.Firechat = Firechat;
+        //root.Firechat = Firechat;
 
         // Firechat Internal Methods
         // --------------

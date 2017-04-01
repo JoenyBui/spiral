@@ -17,28 +17,16 @@
         };
         firebase.initializeApp(config);
 
-        
-        // function initChat(user) {
-        //     // Get a Firebase Database ref
-        //     var chatRef = firebase.database().ref('chat');
-        //
-        //     // Create a Firechat instance
-        //     var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
-        //
-        //     // Set the Firechat user
-        //     chat.setUser(user.uid, user.displayName);
-        // }
-        // // Get Firebase Database reference.
-        // var firepadRef = firebase.database().ref();
-        //
-        // // Create CodeMirror (with lineWrapping on).
-        // var codeMirror = CodeMirror(document.getElementById('firepad'), { lineWrapping: true });
-        //
-        // // Create Firepad (with rich text toolbar and shortcuts enabled).
-        // var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, {
-        //     richTextShortcuts: true,
-        //     richTextToolbar: true,
-        //     defaultText: 'Hello, World!'
-        // });
+        /*
+        Online/Offline State Done The Right Way
+        onDisconnect - a function that tells the Firebase server to do something
+            when it notices a client isn't connected anymore.
+
+         Need to instruct the Firebase server to set the user's boolean
+         to 'false' when it detects that the client went offline.
+         */
+        var ref = firebase.database().ref();
+
+
     }
 })();

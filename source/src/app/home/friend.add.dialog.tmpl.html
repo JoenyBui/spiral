@@ -1,0 +1,22 @@
+<md-dialog flex="60" flex-xs="100">
+    <md-toolbar class="toolbar-default">
+        <div class="md-toolbar-tools">
+            <h2 flex translate>Add new friend.</h2>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content class="md-dialog-content">
+
+        <div layout="row">
+            <md-chips ng-model="vm.users"
+                      md-separator-keys="vm.customKeys" flex></md-chips>
+        </div>
+
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="vm.addUser()" aria-label="Add Users" translate="Add Users"></md-button>
+        <md-button ng-click="vm.cancelClick()" aria-label="{{'GENERAL.CANCEL' | translate}}" translate="Done"></md-button>
+    </md-dialog-actions>
+</md-dialog>

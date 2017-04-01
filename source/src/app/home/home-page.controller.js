@@ -6,9 +6,8 @@
         .controller('HomePageController', HomePageController);
 
     /* @ngInject */
-    function HomePageController($scope, $mdDialog, $firebaseArray, $firebaseObject, $state, EssayFactory, auth, Users, userEssays) {
+    function HomePageController($scope, $mdDialog, $mdToast, $firebaseArray, $firebaseObject, $state, EssayFactory, auth, Users, userEssays) {
         var vm = this;
-
 
         // vm.ref = firebase.database().ref().child('essay');
 
@@ -16,6 +15,17 @@
         // query = query.orderByChild('timestamp').limitToLast(25);
 
         var ref = firebase.database().ref().child('user').child(auth.uid);
+
+        // Check for user presence.
+        var amOnline = firebase.database().ref().child('.info/connected');
+        var userRef = ref.child('presence').child(auth.uid);
+
+        amOnline.on('value', function(snapshot) {
+            if (snapshot.val()) {
+                userRef.onDisconnect().remove();
+                userRef.set(true);
+            }
+        });
 
         vm.essayRefs = userEssays.ownedEssays;
         vm.otherRefs = [];
@@ -30,7 +40,7 @@
             firebase.database().ref().child('essay').child(key).once('value', function (snapshot) {
                     var obj = snapshot.val();
                     obj.key = snapshot.key;
-                
+
                     vm.otherRefs.push(obj);
                 }
             )
@@ -107,7 +117,52 @@
                 )
             });
         });
-        //
-        // initChat(auth);
+
+        $scope.$on('addNewFriend', function (event, $event) {
+            $mdDialog.show({
+                controller: 'FriendAddDialogController',
+                controllerAs: 'vm',
+                templateUrl: 'app/home/friend.add.dialog.tmpl.html',
+                locals: {
+                    model: vm.loadItem
+                },
+                targetEvent: $event
+            }).then(function (sharedUsers) {
+                // pop a toast
+                // $mdToast.show(
+                //   $mdToast.simple()
+                //       .textContent('WhAM Input submitted to run!')
+                //     .position('bottom right')
+                //     .hideDelay(2000)
+                // )
+            })
+        });
+
+
+        $scope.$on('addToFriendslist', function ($event, id) {
+            //TODO: Check if the user already exists.
+            var id = id;
+
+            var obj = $firebaseObject(Users.usersRef.child(id));
+
+            obj.$loaded().then(function () {
+                if (obj.friends == undefined) {
+                    obj.friends = [id];
+                } else {
+                    obj.friends.push(id);
+                }
+
+                obj.$save().then(function() {
+                    $mdToast.show(
+                        $mdToast.simple(id + ' id just added.')
+                            .content()
+                            .position('bottom right')
+                            .highlightAction(true)
+                            .hideDelay(0)
+                    );
+                });
+            });
+
+        });
     }
 })();

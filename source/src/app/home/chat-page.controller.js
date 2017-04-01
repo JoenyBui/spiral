@@ -10,6 +10,9 @@
 
     function ChatPageController($scope, auth, Users) {
         var vm = this;
+
+        vm.auth = auth;
+        
         //
         // function initChat(user) {
         //     // Get a Firebase Database ref

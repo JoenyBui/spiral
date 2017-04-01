@@ -8,7 +8,7 @@
         .module('app')
         .factory('FirechatUI', FirechatUIFactory);
 
-    function FirechatUIFactory() {
+    function FirechatUIFactory(Firechat) {
         // if (!$ || (parseInt($().jquery.replace(/\./g, ""), 10) < 170)) {
         //     throw new Error("jQuery 1.7 or later required!");
         // }
@@ -121,10 +121,10 @@
             },
 
             _renderLayout: function() {
-                var template = FirechatDefaultTemplates["templates/layout-full.html"];
-                $(this._el).html(template({
-                    maxLengthUsername: this.maxLengthUsername
-                }));
+//                 var template = FirechatDefaultTemplates["templates/layout-full.html"];
+//                 $(this._el).html(template({
+//                     maxLengthUsername: this.maxLengthUsername
+//                 }));
             },
 
             _onUpdateUser: function(user) {
