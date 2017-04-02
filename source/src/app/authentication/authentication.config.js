@@ -44,11 +44,29 @@
             controllerAs: 'vm',
             resolve: {
                 requireNoAuth: function($state, Auth){
-                    return Auth.$signOut().then(function(auth){
-                        $state.go('authentication.login');
-                    }, function(error){
-                        return;
+                    var user = firebase.auth().currentUser;
+                    var uid = user.uid;
+                    // Check for user presence.
+                    var amOnline = firebase.database().ref().child('.info/connected');
+                    var userPresenceRef = firebase.database().ref().child('user').child(uid).child('presence');
+
+                    return amOnline.on('value', function(snapshot) {
+                        if (snapshot.val()) {
+                            userPresenceRef.onDisconnect().remove();
+                            userPresenceRef.set(false);
+                        }
+
+                        Auth.$signOut().then(function(snapshot){                       
+                            $state.go('authentication.login');
+                        }, function(error){
+                            return;
+                        });
                     });
+//                     return Auth.$signOut().then(function(snapshot){
+//                         $state.go('authentication.login');
+//                     }, function(error){
+//                         return;
+//                     });
                 }
             }
         })
@@ -97,7 +115,7 @@
                                 var user = new ProfileFactory.Current();
 
                                 // Finish the loaded profile.
-                               
+
                                 user.load(userProfile);
 
                                 return user;

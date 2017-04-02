@@ -6,25 +6,62 @@
         .controller('HomePageController', HomePageController);
 
     /* @ngInject */
-    function HomePageController($scope, $mdDialog, $mdToast, $firebaseArray, $firebaseObject, $state, EssayFactory, auth, Users, userEssays) {
+    function HomePageController($scope, $mdDialog, $mdToast, $firebaseArray, $firebaseObject, $state, EssayFactory, 
+                                auth, Users, userEssays) {
         var vm = this;
 
         // vm.ref = firebase.database().ref().child('essay');
 
         // var query = vm.ref.orderByChild('owner').equalTo(auth.uid);
         // query = query.orderByChild('timestamp').limitToLast(25);
-
-        var ref = firebase.database().ref().child('user').child(auth.uid);
+        var ref = firebase.database().ref();
+        var profileRef = ref.child('profile');
+        var usersRef = ref.child('user');
+        var userRef = usersRef.child(auth.uid);
 
         // Check for user presence.
-        var amOnline = firebase.database().ref().child('.info/connected');
-        var userRef = ref.child('presence').child(auth.uid);
+        var amOnline = ref.child('.info/connected');
+        var userPresenceRef = userRef.child('presence');
 
         amOnline.on('value', function(snapshot) {
             if (snapshot.val()) {
-                userRef.onDisconnect().remove();
-                userRef.set(true);
+                userPresenceRef.onDisconnect().remove();
+                userPresenceRef.set(true);
             }
+        });
+
+        // Friends list
+        var friendsRef = userRef.child('friends');
+        vm.friends = {};
+
+        // var handles = [];
+        friendsRef.on('child_added', function (snapshot) {
+            var uid = snapshot.val();
+
+            vm.friends[uid] = {
+                name: '',
+                image: '',
+                status: ''
+            };
+
+            // Check if user is log on.
+            profileRef.child(uid).once('value', function (profileSnapshot) {
+                var obj = profileSnapshot.val();
+
+                vm.friends[uid].name = obj.displayName;
+                vm.friends[uid].image = obj.avatar;
+            });
+
+            usersRef.child(uid).child('presence').on('value', function (userSnapshot) {
+                if (userSnapshot.val() == true) {
+                    vm.friends[uid].status = true;
+                } else {
+                    vm.friends[uid].status = false;
+                }
+
+            });
+
+            // handles.push();
         });
 
         vm.essayRefs = userEssays.ownedEssays;
@@ -143,7 +180,7 @@
             //TODO: Check if the user already exists.
             var id = id;
 
-            var obj = $firebaseObject(Users.usersRef.child(id));
+            var obj = $firebaseObject(userRef);
 
             obj.$loaded().then(function () {
                 if (obj.friends == undefined) {
