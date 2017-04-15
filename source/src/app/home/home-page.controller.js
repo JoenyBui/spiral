@@ -6,7 +6,7 @@
         .controller('HomePageController', HomePageController);
 
     /* @ngInject */
-    function HomePageController($scope, $mdDialog, $mdToast, $firebaseArray, $firebaseObject, $state, EssayFactory, 
+    function HomePageController($scope, $mdDialog, $mdToast, $firebaseArray, $firebaseObject, $state, EssayFactory,
                                 auth, Users, userEssays) {
         var vm = this;
 
@@ -32,37 +32,69 @@
 
         // Friends list
         var friendsRef = userRef.child('friends');
-        vm.friends = {};
+        var obj = $firebaseObject(friendsRef);
+        // to take an action after the data loads, use the $loaded() promise
+        obj.$loaded().then(function() {
+            console.log("loaded record:", obj.$id, obj.someOtherKeyInData);
+
+            // To iterate the key/value pairs of the object, use angular.forEach()
+            angular.forEach(obj, function(value, key) {
+                console.log(key, value);
+            });
+        });
+
+        // To make the data available in the DOM, assign it to $scope
+        $scope.friends = obj;
+
+        // For three-way data bindings, bind it to the scope instead
+        obj.$bindTo($scope, "friends");
+
+        // list.$watch(function (event) {
+        //     console.log(event);
+        // });
+
+        // $scope.friends = {};
 
         // var handles = [];
-        friendsRef.on('child_added', function (snapshot) {
-            var uid = snapshot.val();
-
-            vm.friends[uid] = {
-                name: '',
-                image: '',
-                status: ''
-            };
-
-            // Check if user is log on.
-            profileRef.child(uid).once('value', function (profileSnapshot) {
-                var obj = profileSnapshot.val();
-
-                vm.friends[uid].name = obj.displayName;
-                vm.friends[uid].image = obj.avatar;
-            });
-
-            usersRef.child(uid).child('presence').on('value', function (userSnapshot) {
-                if (userSnapshot.val() == true) {
-                    vm.friends[uid].status = true;
-                } else {
-                    vm.friends[uid].status = false;
-                }
-
-            });
-
-            // handles.push();
-        });
+        // friendsRef.on('child_added', function (snapshot) {
+        //     var uid = snapshot.val();
+        //
+        //     // vm.friends[uid] = {
+        //     var friendObj = {
+        //         name: '',
+        //         image: '',
+        //         status: ''
+        //     };
+        //
+        //     // Check if user is log on.
+        //     profileRef.child(uid).on('value', function (profileSnapshot) {
+        //     // profileRef.child(uid).once('value', function (profileSnapshot) {
+        //         var obj = profileSnapshot.val();
+        //
+        //         // vm.friends[uid].name = obj.displayName;
+        //         // vm.friends[uid].image = obj.avatar;
+        //
+        //         friendObj.name = obj.displayName;
+        //         friendObj.image = obj.avatar;
+        //
+        //
+        //         usersRef.child(uid).child('presence').on('value', function (userSnapshot) {
+        //             if (userSnapshot.val() == true) {
+        //                 // vm.friends[uid].status = true;
+        //                 friendObj.status = true;
+        //             } else {
+        //                 friendObj.status = false;
+        //                 // vm.friends[uid].status = false;
+        //             }
+        //
+        //             $scope.friends[uid] = friendObj;
+        //
+        //         });
+        //     });
+        //
+        //
+        //     // handles.push();
+        // });
 
         vm.essayRefs = userEssays.ownedEssays;
         vm.otherRefs = [];
@@ -174,7 +206,6 @@
                 // )
             })
         });
-
 
         $scope.$on('addToFriendslist', function ($event, id) {
             //TODO: Check if the user already exists.

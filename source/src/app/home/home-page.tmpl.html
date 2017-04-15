@@ -35,7 +35,7 @@
 
         <tri-widget flex="50" title="Contacts" contacts-widget content-layout="row">
             <md-list flex>
-                <md-list-item ng-repeat="friend in ::vm.friends">
+                <md-list-item ng-repeat="friend in ::friends">
                     <img class="md-avatar" ng-src="{{friend.image}}" alt="{{::friend.name}}">
                     <p>{{::friend.name}}</p>
                     <div ng-if="friend.status == true">

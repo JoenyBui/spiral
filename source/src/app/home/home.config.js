@@ -100,6 +100,30 @@
                 }
             }
         })
+        .state('triangular.channels', {
+            url: '/channels',
+            templateUrl: 'app/channels/channel.tmpl.html',
+            controller: 'ChannelsController',
+            controllerAs: 'vm',
+            resolve: {
+                channels: function (ChannelsFactory) {
+                    return ChannelsFactory.$loaded();
+                },
+                profile: function ($state, Auth, Users){
+                    return Auth.$requireSignIn().then(function(auth){
+                        return Users.getProfile(auth.uid).$loaded().then(function (profile){
+                            if(profile.displayName){
+                                return profile;
+                            } else {
+                                $state.go('profile');
+                            }
+                        });
+                    }, function(error){
+                        $state.go('home');
+                    });
+                }
+            }
+        })
         .state('triangular.chat', {
             url: '/chat',
             // layout-column class added to make footer move to
@@ -119,7 +143,6 @@
                     });
                 }
             }
-
         });
 
         triMenuProvider.addMenu({
@@ -130,6 +153,10 @@
             children: [{
                 name: 'Dashboard',
                 state: 'triangular.home',
+                type: 'link'
+            }, {
+                name: 'Channels',
+                state: 'triangular.channels',
                 type: 'link'
             }, {
                 name: 'Chat',
