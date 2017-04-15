@@ -124,6 +124,26 @@
                 }
             }
         })
+        .state('triangular.channels.create', {
+            url: '/create',
+            templateUrl: 'app/channels/channel.create.tmpl.html',
+            controller: 'ChannelsController',
+            controllerAs: 'vm'
+        })
+        .state('triangular.channels.messages', {
+            url: '/{channelId}/messages',
+            templateUrl: 'app/channels/messages.tmpl.html',
+            controller: 'MessagesController',
+            controllerAs: 'vm',
+            resolve: {
+                messages: function($stateParams, MessagesFactory){
+                    return MessagesFactory.forChannel($stateParams.channelId).$loaded();
+                },
+                channelName: function($stateParams, channels){
+                    return '#'+channels.$getRecord($stateParams.channelId).name;
+                }
+            }
+        })
         .state('triangular.chat', {
             url: '/chat',
             // layout-column class added to make footer move to

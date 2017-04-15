@@ -22,5 +22,17 @@
                 $state.go('home');
             });
         };
+
+        vm.newChannel = {
+            name: ''
+        };
+
+        vm.createChannel = function(){
+            vm.channels.$add(vm.newChannel).then(function(){
+                vm.newChannel = {
+                    name: ''
+                };
+            });
+        };
     }
 })();

@@ -7,22 +7,35 @@
 
         <div class="channel-list">
             <div class="list-head">Channels</div>
+
+            <div class="channel" ng-repeat="channel in vm.channels">
+                <a ui-sref="triangular.channels.messages({channelId: channel.$id})"
+                   ui-sref-active="selected"># {{ channel.name }}</a>
+            </div>
+
+            <div class="channel create">
+                <a ui-sref="triangular.channels.create">+ create channel</a>
+            </div>
         </div>
 
         <div class="my-info">
-            <img class="user-pic" ng-src="{{ vm.getGravatar(channelsCtrl.profile.$id) }}" />
+            <img class="user-pic" ng-src="{{ vm.getGravatar(vm.profile.$id) }}" />
             <div class="user-info">
                 <div class="user-name">
                     {{ vm.profile.displayName }}
                 </div>
 
                 <div class="options">
-                    <a ui-sref="profile">edit profile</a>
+                    <a ui-sref="triangular.profile">edit profile</a>
                     /
                     <a href="#" ng-click="vm.logout()">logout</a>
                 </div>
             </div>
         </div>
 
+    </div>
+
+    <div class="message-pane">
+        <ui-view></ui-view>
     </div>
 </div>

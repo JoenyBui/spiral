@@ -32,6 +32,7 @@
                 return users.$getRecord(uid).displayName;
             },
             getGravatar: function(uid){
+                return '';
                 return '//www.gravatar.com/avatar/' + users.$getRecord(uid).emailHash;
             },
             findUserByEmail: function (email) {
