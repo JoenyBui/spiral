@@ -13,10 +13,11 @@
 
         vm.profile = profile;
         vm.channels = channels;
+        vm.users = Users.all;
 
         vm.getDisplayName = Users.getDisplayName;
         vm.getGravatar = Users.getGravatar;
-
+        
         vm.logout = function(){
             Auth.$signOut().then(function(){
                 $state.go('home');
@@ -28,10 +29,8 @@
         };
 
         vm.createChannel = function(){
-            vm.channels.$add(vm.newChannel).then(function(){
-                vm.newChannel = {
-                    name: ''
-                };
+            vm.channels.$add(vm.newChannel).then(function(ref){
+                $state.go('triangular.channels.messages', {channelId: ref.key});
             });
         };
     }

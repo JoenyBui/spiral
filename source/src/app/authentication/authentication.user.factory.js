@@ -11,7 +11,8 @@
         var emailMapRef = firebase.database().ref('emailMap');
 
         var users = $firebaseArray(usersRef);
-
+        var profiles = $firebaseArray(profileRef);
+        
         var Users = {
             usersRef: usersRef,
             profileRef: profileRef,
@@ -29,7 +30,7 @@
                 });
             },
             getDisplayName: function(uid){
-                return users.$getRecord(uid).displayName;
+                return profiles.$getRecord(uid).displayName;
             },
             getGravatar: function(uid){
                 return '';

@@ -16,6 +16,17 @@
             <div class="channel create">
                 <a ui-sref="triangular.channels.create">+ create channel</a>
             </div>
+
+            <div class="list-head">Direct Messages</div>
+            <div class="channel" ng-repeat="user in vm.users">
+                <a ng-if="user.$id !== vm.profile.$id"
+                   ui-sref="triangular.channels.direct({uid: user.$id})"
+                   ui-sref-active="selected">
+                    {{ vm.getDisplayName(user.$id)}}
+                    <!--{{ user.displayName }}-->
+<!--                     {{ user.$id }} -->
+                </a>
+            </div>
         </div>
 
         <div class="my-info">

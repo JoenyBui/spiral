@@ -144,6 +144,22 @@
                 }
             }
         })
+        .state('triangular.channels.direct', {
+            url: '/{uid}/messages/direct',
+            templateUrl: 'app/channels/messages.tmpl.html',
+            controller: 'MessagesController',
+            controllerAs: 'vm',
+            resolve: {
+                messages: function($stateParams, MessagesFactory, profile){
+                    return MessagesFactory.forUsers($stateParams.uid, profile.$id).$loaded();
+                },
+                channelName: function($stateParams, Users){
+                    return Users.all.$loaded().then(function(){
+                        return '@'+Users.getDisplayName($stateParams.uid);
+                    });
+                }
+            }
+        })
         .state('triangular.chat', {
             url: '/chat',
             // layout-column class added to make footer move to
