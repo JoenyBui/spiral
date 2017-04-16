@@ -9,10 +9,11 @@
         var usersRef = firebase.database().ref('user');
         var profileRef = firebase.database().ref('profile');
         var emailMapRef = firebase.database().ref('emailMap');
+        var connectedRef = firebase.database().ref('.info/connected');
 
         var users = $firebaseArray(usersRef);
         var profiles = $firebaseArray(profileRef);
-        
+
         var Users = {
             usersRef: usersRef,
             profileRef: profileRef,
@@ -66,6 +67,18 @@
 
                         console.log(foundUser);
                     });
+            },
+            setOnline: function(uid){
+                var connected = $firebaseObject(connectedRef);
+                var online = $firebaseArray(usersRef.child(uid+'/online'));
+
+                connected.$watch(function (){
+                    if(connected.$value === true){
+                        online.$add(true).then(function(connectedRef){
+                            connectedRef.onDisconnect().remove();
+                        });
+                    }
+                });
             },
             all: users
         };

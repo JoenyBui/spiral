@@ -22,6 +22,7 @@
                 <a ng-if="user.$id !== vm.profile.$id"
                    ui-sref="triangular.channels.direct({uid: user.$id})"
                    ui-sref-active="selected">
+                    <span class="presence" ng-class="{online: user.online}"></span>
                     {{ vm.getDisplayName(user.$id)}}
                     <!--{{ user.displayName }}-->
 <!--                     {{ user.$id }} -->
@@ -33,6 +34,7 @@
             <img class="user-pic" ng-src="{{ vm.getGravatar(vm.profile.$id) }}" />
             <div class="user-info">
                 <div class="user-name">
+                    <span class="presence" ng-class="{online: vm.profile.online}"></span>
                     {{ vm.profile.displayName }}
                 </div>
 

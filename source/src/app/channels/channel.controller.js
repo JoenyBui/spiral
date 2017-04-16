@@ -17,10 +17,15 @@
 
         vm.getDisplayName = Users.getDisplayName;
         vm.getGravatar = Users.getGravatar;
-        
+
+        Users.setOnline(profile.$id);
+
         vm.logout = function(){
-            Auth.$signOut().then(function(){
-                $state.go('home');
+            vm.profile.online = null;
+            vm.profile.$save().then(function(){
+                Auth.$signOut().then(function(){
+                    $state.go('home');
+                });
             });
         };
 
