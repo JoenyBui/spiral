@@ -13,6 +13,11 @@
 
         var users = $firebaseArray(usersRef);
         var profiles = $firebaseArray(profileRef);
+        var currentUserUid = null;
+
+        Auth.$requireSignIn().then(function (auth) {
+            currentUserUid = auth.uid
+        });
 
         var Users = {
             usersRef: usersRef,
@@ -20,6 +25,9 @@
             emailMapRef: emailMapRef,
             shareEssayToUser: function () {
 
+            },
+            isCurrentUser: function (uid) {
+                return currentUserUid == uid;
             },
             getProfile: function(uid){
                 return $firebaseObject(profileRef.child(uid));
@@ -34,7 +42,7 @@
                 return profiles.$getRecord(uid).displayName;
             },
             getGravatar: function(uid){
-                return '';
+                // Check for gravtar. If not then default to something.
                 return '//www.gravatar.com/avatar/' + users.$getRecord(uid).emailHash;
             },
             findUserByEmail: function (email) {

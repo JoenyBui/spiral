@@ -1,26 +1,35 @@
-<div class="header">
-    <h1>{{ vm.channelName }}</h1>
-</div>
+<div layout-fill="" class="widget-chat">
 
-<div class="message-wrap" ng-repeat="message in vm.messages">
-    <img class="user-pic" ng-src="{{ channelsCtrl.getGravatar(message.uid) }}" />
-    <div class="message-info">
-        <div class="user-name">
-            {{ channelsCtrl.getDisplayName(message.uid) }}
-            <span class="timestamp">{{ message.timestamp | date:'short' }}</span>
-        </div>
-        <div class="message">
-            {{ message.body }}
-        </div>
+    <div class="header">
+        <h1>{{ vm.channelName }}</h1>
     </div>
-</div>
 
-<form class="message-form" ng-submit="vm.sendMessage()">
+    <md-divider></md-divider>
+    <md-list class="padding-top-10 padding-bottom-0" flex>
+        <md-list-item ng-repeat="message in vm.messageList | orderBy: '-timestamp':true"
+                      class="md-3-line"
+                      ng-class="vm.userClass(message.uid)"
+                      ng-init="userColor = vm.userColor(message.uid)">
+            <img class="md-avatar" ng-src="{{ vm.users.getGravatar(message.uid) }}" />
+            <div class="md-list-item-text">
+                <h3>{{ vm.users.getDisplayName(message.uid) }}</h3>
+                <p class="timestamp">{{ message.timestamp | date:'short' }}</p>
+                <p palette-background="{{::userColor}}:200">
+                    {{::message.body}}
+                </p>
+            </div>
+        </md-list-item>
+    </md-list>
 
-    <div class="input-group">
-        <input type="text" class="form-control" ng-model="vm.message" placeholder="Type a message...">
-    <span class="input-group-btn">
-      <button class="btn btn-default" type="submit">Send</button>
-    </span>
+    <div layout="row" layout-align="space-between center">
+        <form>
+            <md-input-container flex class="margin-left-20 margin-right-20" >
+                <label>Type a message...</label>
+                <input type="text" ng-model="vm.message">
+            </md-input-container>
+
+            <button class="btn btn-default" type="submit" ng-click="vm.sendMessage()">Send</button>
+        </form>
     </div>
-</form>
+
+</div>

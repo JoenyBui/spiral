@@ -102,9 +102,21 @@
         })
         .state('triangular.channels', {
             url: '/channels',
-            templateUrl: 'app/channels/channel.tmpl.html',
-            controller: 'ChannelsController',
-            controllerAs: 'vm',
+            views: {
+                'toolbar@triangular': {
+                    templateUrl: 'app/examples/email/layout/toolbar/toolbar.tmpl.html',
+                    controller: 'EmailToolbarController',
+                    controllerAs: 'vm'
+                },
+                '': {
+                    templateUrl: 'app/channels/channel.tmpl.html',
+                    controller: 'ChannelsController',
+                    controllerAs: 'vm'
+                }
+            },
+            // templateUrl: 'app/channels/channel.tmpl.html',
+            // controller: 'ChannelsController',
+            // controllerAs: 'vm',
             resolve: {
                 channels: function (ChannelsFactory) {
                     return ChannelsFactory.$loaded();
@@ -121,6 +133,12 @@
                     }, function(error){
                         $state.go('home');
                     });
+                }
+            },
+            data: {
+                layout: {
+                    footer: false,
+                    contentClass: 'triangular-non-scrolling'
                 }
             }
         })

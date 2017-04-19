@@ -1,54 +1,102 @@
-<div class="main">
-    <div class="sidebar">
+<!--<div class="main">-->
+    <!--<div class="sidebar">-->
 
-        <div class="slack-name">
-            <h2>FireSlack</h2>
-        </div>
+        <!--<div class="slack-name">-->
+            <!--<h2>FireSlack</h2>-->
+        <!--</div>-->
 
-        <div class="channel-list">
-            <div class="list-head">Channels</div>
+        <!--<div class="channel-list">-->
+            <!--<div class="list-head">Channels</div>-->
 
-            <div class="channel" ng-repeat="channel in vm.channels">
-                <a ui-sref="triangular.channels.messages({channelId: channel.$id})"
-                   ui-sref-active="selected"># {{ channel.name }}</a>
-            </div>
+            <!--<div class="channel" ng-repeat="channel in vm.channels">-->
+                <!--<a ui-sref="triangular.channels.messages({channelId: channel.$id})"-->
+                   <!--ui-sref-active="selected"># {{ channel.name }}</a>-->
+            <!--</div>-->
 
-            <div class="channel create">
-                <a ui-sref="triangular.channels.create">+ create channel</a>
-            </div>
+            <!--<div class="channel create">-->
+                <!--<a ui-sref="triangular.channels.create">+ create channel</a>-->
+            <!--</div>-->
 
-            <div class="list-head">Direct Messages</div>
-            <div class="channel" ng-repeat="user in vm.users">
-                <a ng-if="user.$id !== vm.profile.$id"
-                   ui-sref="triangular.channels.direct({uid: user.$id})"
-                   ui-sref-active="selected">
-                    <span class="presence" ng-class="{online: user.online}"></span>
-                    {{ vm.getDisplayName(user.$id)}}
-                    <!--{{ user.displayName }}-->
-<!--                     {{ user.$id }} -->
-                </a>
-            </div>
-        </div>
+            <!--<div class="list-head">Direct Messages</div>-->
+            <!--<div class="channel" ng-repeat="user in vm.users">-->
+                <!--<a ng-if="user.$id !== vm.profile.$id"-->
+                   <!--ui-sref="triangular.channels.direct({uid: user.$id})"-->
+                   <!--ui-sref-active="selected">-->
+                    <!--<span class="presence" ng-class="{online: user.online}"></span>-->
+                    <!--{{ vm.getDisplayName(user.$id)}}-->
+                    <!--&lt;!&ndash;{{ user.displayName }}&ndash;&gt;-->
+                    <!--&lt;!&ndash;                     {{ user.$id }} &ndash;&gt;-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
 
-        <div class="my-info">
-            <img class="user-pic" ng-src="{{ vm.getGravatar(vm.profile.$id) }}" />
-            <div class="user-info">
-                <div class="user-name">
-                    <span class="presence" ng-class="{online: vm.profile.online}"></span>
-                    {{ vm.profile.displayName }}
+        <!--<div class="my-info">-->
+            <!--<img class="user-pic" ng-src="{{ vm.getGravatar(vm.profile.$id) }}"/>-->
+            <!--<div class="user-info">-->
+                <!--<div class="user-name">-->
+                    <!--<span class="presence" ng-class="{online: vm.profile.online}"></span>-->
+                    <!--{{ vm.profile.displayName }}-->
+                <!--</div>-->
+
+                <!--<div class="options">-->
+                    <!--<a ui-sref="triangular.profile">edit profile</a>-->
+                    <!--/-->
+                    <!--<a href="#" ng-click="vm.logout()">logout</a>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+    <!--</div>-->
+
+    <!--<div class="message-pane">-->
+        <!--<ui-view></ui-view>-->
+    <!--</div>-->
+<!--</div>-->
+
+<div flex layout="row">
+    <md-content flex="100" flex-gt-xs="50" flex-gt-lg="40">
+        <!--<md-content flex="100" flex-gt-xs="50" flex-gt-lg="40" ng-show="vm.showEmailList">-->
+        <md-list class="inbox-list">
+            <!--<div ng-repeat="channel in vm.channels">-->
+            <md-subheader class="md-primary" ng-show="channel.length > 0">{{::channel.name}}</md-subheader>
+
+            <!--<div class="channel" ng-repeat="channel in vm.channels">-->
+            <!--<a ui-sref="triangular.channels.messages({channelId: channel.$id})"-->
+            <!--ui-sref-active="selected"># {{ channel.name }}</a>-->
+            <!--</div>-->
+            <!---->
+            <md-list-item class="inbox-list__email inbox-list__email--animated md-1-line md-long-text"
+                          ng-repeat="channel in vm.channels"
+                          ui-sref="triangular.channels.messages({channelId: channel.$id})"
+                          ui-sref-active="selected"
+                          ng-class="{ 'inbox-list__email--active': vm.selectedMail === email.id, 'inbox-list__email--unread': email.unread }">
+                <!--<img class="md-avatar" ng-src="{{::email.from.image}}"-->
+                <!--alt="{{::email.from.name}}">-->
+                <div class="md-list-item-text" layout="column">
+                    <h3><span class="md-caption" am-time-ago="email.date"></span># {{::channel.name}}</h3>
+                    <!--<h4>{{::email.subject}}</h4>-->
+                    <!--<p>{{::email.content[0] | cut:true:80:' ...'}}</p>-->
                 </div>
+                <md-divider ng-if="!$last"></md-divider>
+            </md-list-item>
+            <!--</div>-->
+        </md-list>
+    </md-content>
 
-                <div class="options">
-                    <a ui-sref="triangular.profile">edit profile</a>
-                    /
-                    <a href="#" ng-click="vm.logout()">logout</a>
+    <div class="md-whiteframe-z1 animate-wrapper" layout="column" layout-align="start center" flex>
+        <div flex id="ui-admin-email" ui-view layout="column" layout-align="start center"
+             class="overflow-auto full-width">
+            <div flex class="inbox-no-email-selected" layout="column" layout-align="center">
+                <h2 hide-xs translate>No direct message selected</h2>
+
+                <div class="message-pane">
+                    <ui-view></ui-view>
                 </div>
             </div>
         </div>
-
-    </div>
-
-    <div class="message-pane">
-        <ui-view></ui-view>
     </div>
 </div>
+<md-button ui-sref="triangular.channels.create" class="md-fab md-accent md-fab-bottom-right"
+           aria-label="{{'EMAIL.COMPOSE_EMAIL' | triTranslate}}">
+    <md-icon md-font-icon="zmdi zmdi-edit"></md-icon>
+</md-button>
