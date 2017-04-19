@@ -29,14 +29,22 @@
             isCurrentUser: function (uid) {
                 return currentUserUid == uid;
             },
+            getFriendsListRef: function (uid) {
+                return firebase.database().ref().child('user').child(uid).child('friends');
+            },
+            getFriendsList: function (uid) {
+                return $firebaseArray(this.getFriendsListRef(uid));
+            },
             getProfile: function(uid){
                 return $firebaseObject(profileRef.child(uid));
             },
             getCurrentProfile: function() {
-                var vm = this;
                 return Auth.$requireSignIn().then(function (auth) {
                     return vm.getProfile(auth.uid);
                 });
+            },
+            getCurrentStatus: function (uid) {
+                return users.$getRecord(uid).presence;
             },
             getDisplayName: function(uid){
                 return profiles.$getRecord(uid).displayName;

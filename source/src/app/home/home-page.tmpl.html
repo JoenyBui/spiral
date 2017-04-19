@@ -35,13 +35,14 @@
 
         <tri-widget flex="50" title="Contacts" contacts-widget content-layout="row">
             <md-list flex>
-                <md-list-item ng-repeat="friend in ::friends">
-                    <img class="md-avatar" ng-src="{{friend.image}}" alt="{{::friend.name}}">
-                    <p>{{::friend.name}}</p>
-                    <div ng-if="friend.status == true">
+                <md-list-item ng-repeat="friend in vm.friendsList">
+                    <img class="md-avatar" ng-src="{{ vm.users.getGravatar(friend) }}" />
+                    <!--<p>{{::friend.name}}</p>-->
+                    <p>{{ vm.users.getDisplayName(friend) }}</p>
+                    <div ng-if="vm.users.getCurrentStatus(friend)== true">
                         <p>Online</p>
                     </div>
-                    <div ng-if="friend.status != true">
+                    <div ng-if="vm.users.getCurrentStatus(friend) != true">
                         <p>Offline</p>
                     </div>
 

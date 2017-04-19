@@ -97,6 +97,9 @@
                         ownedEssays: ownedEssays,
                         sharedEssays: sharedEssays
                     }
+                },
+                friends: function (Users, auth) {
+                    return Users.getFriendsList(auth.uid).$loaded();
                 }
             }
         })

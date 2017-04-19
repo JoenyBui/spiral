@@ -7,8 +7,12 @@
 
     /* @ngInject */
     function HomePageController($scope, $mdDialog, $mdToast, $firebaseArray, $firebaseObject, $state, EssayFactory,
-                                auth, Users, userEssays) {
+                                auth, Users, userEssays, friends) {
         var vm = this;
+
+        vm.users = Users;
+
+        vm.friendsList = [];
 
         // vm.ref = firebase.database().ref().child('essay');
 
@@ -18,6 +22,11 @@
         var profileRef = ref.child('profile');
         var usersRef = ref.child('user');
         var userRef = usersRef.child(auth.uid);
+        vm.friendsRef = friends.$ref();
+
+        vm.friendsRef.on('child_added', function (data) {
+            vm.friendsList.push(data.val());
+        });
 
         // Check for user presence.
         var amOnline = ref.child('.info/connected');
@@ -30,24 +39,22 @@
             }
         });
 
-        // Friends list
-        var friendsRef = userRef.child('friends');
-        var obj = $firebaseObject(friendsRef);
-        // to take an action after the data loads, use the $loaded() promise
-        obj.$loaded().then(function() {
-            console.log("loaded record:", obj.$id, obj.someOtherKeyInData);
+//         var obj = $firebaseObject(friendsRef);
+//         // to take an action after the data loads, use the $loaded() promise
+//         obj.$loaded().then(function() {
+//             console.log("loaded record:", obj.$id, obj.someOtherKeyInData);
 
-            // To iterate the key/value pairs of the object, use angular.forEach()
-            angular.forEach(obj, function(value, key) {
-                console.log(key, value);
-            });
-        });
+//             // To iterate the key/value pairs of the object, use angular.forEach()
+//             angular.forEach(obj, function(value, key) {
+//                 console.log(key, value);
+//             });
+//         });
 
         // To make the data available in the DOM, assign it to $scope
-        $scope.friends = obj;
+        $scope.friends = friends;
 
         // For three-way data bindings, bind it to the scope instead
-        obj.$bindTo($scope, "friends");
+//         obj.$bindTo($scope, "friends");
 
         // list.$watch(function (event) {
         //     console.log(event);
