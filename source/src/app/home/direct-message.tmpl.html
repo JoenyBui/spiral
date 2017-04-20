@@ -1,0 +1,48 @@
+<md-dialog flex="60" flex-sm="100" flex-xs="100">
+    <md-toolbar class="toolbar-default">
+        <div class="md-toolbar-tools">
+            <h2 flex translate>{{ vm.channelName }}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="cancel">
+                <md-icon md-font-icon="zmdi zmdi-close"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content class="md-dialog-content">
+        <div class="widget-chat">
+            <md-list class="margin-bottom-10" flex>
+                <md-list-item ng-repeat="message in messageList | orderBy: '-timestamp':true"
+                              class="md-3-line"
+                              ng-class="vm.userClass(message.uid)"
+                              ng-init="userColor = vm.userColor(message.uid)" flex>
+                    <img class="md-avatar" ng-src="{{ vm.users.getGravatar(message.uid) }}" />
+                    <div class="md-list-item-text">
+                        <h3>{{ vm.users.getDisplayName(message.uid) }}</h3>
+                        <p class="timestamp">{{ message.timestamp | date:'short' }}</p>
+                        <p palette-background="{{::userColor}}:200">
+                            {{::message.body}}
+                        </p>
+                    </div>
+                </md-list-item>
+            </md-list>
+
+        </div>
+
+    </md-dialog-content>
+firfsafdf
+     <md-divider></md-divider>
+
+      <md-dialog-actions>
+            <div layout="row" flex="100">
+                <form>
+                    <md-input-container flex class="margin-left-5 margin-right-5" flex>
+                        <label>Type a message...</label>
+                        <input type="text" ng-model="vm.message">
+                    </md-input-container>
+
+                    <button class="btn btn-default" type="submit" ng-click="vm.sendMessage()">Send</button>
+                </form>
+            </div>
+      </md-dialog-actions>
+</md-dialog>

@@ -50,6 +50,19 @@
                         // $state.go('triangular.home');
                     });
                 },
+                profile: function ($state, Auth, Users){
+                    return Auth.$requireSignIn().then(function(auth){
+                        return Users.getProfile(auth.uid).$loaded().then(function (profile){
+                            if(profile.displayName){
+                                return profile;
+                            } else {
+                                $state.go('profile');
+                            }
+                        });
+                    }, function(error){
+                        $state.go('home');
+                    });
+                },
                 ownedEssays: function (auth, $firebaseArray) {
                     var ref = firebase.database().ref().child('essay');
                     var query = ref.orderByChild('owner').equalTo(auth.uid);

@@ -163,7 +163,7 @@
             method: 'GET',
             url: API_CONFIG.url + 'email/inbox'
         }).success(function(data) {
-            vm.emails = data.slice(1,20);
+            vm.emails = data.slice(1, 20);
         });
 
         function openMail() {

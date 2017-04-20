@@ -24,20 +24,15 @@
             vm.messagesRef.off();
 
             // Loads the last 12 messages and listen for new ones.
-            var setMessage = function(data) {
-                var val = data.val();
-                vm.messageList.push(val);
-                // this.displayMessage(data.key, val.name, val.text, val.photoUrl, val.imageUrl);
-            }.bind(this);
+            // var setMessage = function(data) {
+            //     var val = data.val();
+            //     vm.messageList.push(val);
+            //     // this.displayMessage(data.key, val.name, val.text, val.photoUrl, val.imageUrl);
+            // }.bind(this);
 
-            vm.messagesRef.limitToLast(12).on('child_added', setMessage);
-            // vm.messagesRef.limitToLast(12).on('child_changed', setMessage);
-
-            // messages.$bindTo($scope, "data").then(function() {
-            //     console.log($scope.data); // { foo: "bar" }
-            //     $scope.data.foo = "baz";  // will be saved to the database
-            //     ref.set({ foo: "baz" });  // this would update the database and $scope.data
-            // });
+            vm.messagesRef.limitToLast(12).on('child_added', function (data) {
+                vm.messageList.push(data.val());
+            });
 
             vm.users = Users;
             vm.messages = messages;
@@ -45,13 +40,6 @@
             vm.channelName = channelName;
 
             vm.message = '';
-
-            // vm.messages.$watch(function(event, key, prevChild) {
-            //     console.log(event);
-            //     // var val = data.val();
-            //     this.displayMessage(data.key, val.name, val.b, val.photoUrl, val.imageUrl);
-            //
-            // });
 
             vm.sendMessage = function (){
                 if(vm.message.length > 0){

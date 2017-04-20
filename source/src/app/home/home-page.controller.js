@@ -6,8 +6,8 @@
         .controller('HomePageController', HomePageController);
 
     /* @ngInject */
-    function HomePageController($scope, $mdDialog, $mdToast, $firebaseArray, $firebaseObject, $state, EssayFactory,
-                                auth, Users, userEssays, friends) {
+    function HomePageController($scope, $mdDialog, $mdToast, $mdSidenav, $mdUtil, $firebaseArray, $firebaseObject, $state, profile,
+                                EssayFactory, auth, Users, userEssays, friends) {
         var vm = this;
 
         vm.users = Users;
@@ -39,75 +39,11 @@
             }
         });
 
-//         var obj = $firebaseObject(friendsRef);
-//         // to take an action after the data loads, use the $loaded() promise
-//         obj.$loaded().then(function() {
-//             console.log("loaded record:", obj.$id, obj.someOtherKeyInData);
-
-//             // To iterate the key/value pairs of the object, use angular.forEach()
-//             angular.forEach(obj, function(value, key) {
-//                 console.log(key, value);
-//             });
-//         });
-
         // To make the data available in the DOM, assign it to $scope
         $scope.friends = friends;
 
-        // For three-way data bindings, bind it to the scope instead
-//         obj.$bindTo($scope, "friends");
-
-        // list.$watch(function (event) {
-        //     console.log(event);
-        // });
-
-        // $scope.friends = {};
-
-        // var handles = [];
-        // friendsRef.on('child_added', function (snapshot) {
-        //     var uid = snapshot.val();
-        //
-        //     // vm.friends[uid] = {
-        //     var friendObj = {
-        //         name: '',
-        //         image: '',
-        //         status: ''
-        //     };
-        //
-        //     // Check if user is log on.
-        //     profileRef.child(uid).on('value', function (profileSnapshot) {
-        //     // profileRef.child(uid).once('value', function (profileSnapshot) {
-        //         var obj = profileSnapshot.val();
-        //
-        //         // vm.friends[uid].name = obj.displayName;
-        //         // vm.friends[uid].image = obj.avatar;
-        //
-        //         friendObj.name = obj.displayName;
-        //         friendObj.image = obj.avatar;
-        //
-        //
-        //         usersRef.child(uid).child('presence').on('value', function (userSnapshot) {
-        //             if (userSnapshot.val() == true) {
-        //                 // vm.friends[uid].status = true;
-        //                 friendObj.status = true;
-        //             } else {
-        //                 friendObj.status = false;
-        //                 // vm.friends[uid].status = false;
-        //             }
-        //
-        //             $scope.friends[uid] = friendObj;
-        //
-        //         });
-        //     });
-        //
-        //
-        //     // handles.push();
-        // });
-
         vm.essayRefs = userEssays.ownedEssays;
         vm.otherRefs = [];
-
-        // List the names of all Mary's groups
-        // var ref = new Firebase("https://docs-examples.firebaseio.com/web/org");
 
         // fetch a list of shared essays.
         ref.child('sharedEssays').on('child_added', function (snapshot) {
@@ -122,55 +58,35 @@
             )
         });
 
-        // fetch a list of Mary's groups
-        // ref.child("users/mchen/groups").on('child_added', function(snapshot) {
-        //     // for each group, fetch the name and print it
-        //     list = snapshot.key();
-        //     ref.child("groups/" + groupKey + "/name").once('value', function(snapshot) {
-        //         System.out.println("Mary is a member of this group: " + snapshot.val());
-        //     });
-        // });
+        vm.openDirectMessage = function ($event, id) {
+            var uid = id;
 
-
-        // vm.otherRefs = userEssays.sharedEssays;
-
-        // vm.essayRefs = $firebaseArray(query);
-
-        // download the data from a Firebase reference into a (pseudo read-only) array
-        // add server changes are applied in realtime
-        // vm.essayRefs = $firebaseArray(vm.ref);
-
-        // vm.essayRefs.$loaded().then(
-        //     function () {
-        //         // Create a query for the most recent 25 messages on the server.
-        //         var query = vm.ref.orderByChild('timestamp').limitToLast(25);
-        //
-        //         // The $firebaseArray service properly handles database queries as well.
-        //         vm.filteredEssarys = $firebaseArray(query);
-        //     }
-        // ).catch(function (error) {
-        //
-        //     }
-//         );
-        //
-        // function initChat(user) {
-        //     // Get a Firebase Database ref
-        //     var chatRef = firebase.database().ref("chat");
-        //
-        //     // Create a Firechat instance
-        //     var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
-        //
-        //     Users.getCurrentProfile().then(function(user) {
-        //         user.$loaded()
-        //             .then(function (data) {
-        //                 // Set the Firechat user
-        //                 chat.setUser(user.$id, user.displayName);
-        //                 console.log('Data', data);
-        //             }).catch(function (error) {
-        //                 console.error("Error, ", error);
-        //         });
-        //     })
-        // }
+            $mdDialog.show({
+                controller: 'DirectMessageController',
+                controllerAs: 'vm',
+                templateUrl: 'app/home/direct-message.tmpl.html',
+                locals: {
+                    id: id,
+                    profile: profile
+                },
+                targetEvent: $event,
+                resolve: {
+                    channels: function (ChannelsFactory) {
+                        return ChannelsFactory.$loaded();
+                    },
+                    messages: function(MessagesFactory){
+                        return MessagesFactory.forUsers(uid, profile.$id).$loaded();
+                    },
+                    channelName: function(Users){
+                        return Users.all.$loaded().then(function(){
+                            return '@'+Users.getDisplayName(uid);
+                        });
+                    }
+                },
+                clickOutsideToClose: true,
+                escapeToClose: true
+            })
+        };
 
         $scope.$on('addNewEssay', function (event, $event) {
 //             var obj = {

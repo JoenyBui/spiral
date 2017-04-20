@@ -16,17 +16,5 @@
             messagingSenderId: "812064767363"
         };
         firebase.initializeApp(config);
-
-        /*
-        Online/Offline State Done The Right Way
-        onDisconnect - a function that tells the Firebase server to do something
-            when it notices a client isn't connected anymore.
-
-         Need to instruct the Firebase server to set the user's boolean
-         to 'false' when it detects that the client went offline.
-         */
-        var ref = firebase.database().ref();
-
-
     }
 })();
