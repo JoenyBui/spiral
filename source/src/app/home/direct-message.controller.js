@@ -29,6 +29,8 @@
 
         vm.messagesRef.limitToLast(12).on('child_added', function (data) {
             $scope.messageList.push(data.val());
+            $scope.$apply();
+            
         }).bind(this);
 
         vm.users = Users;

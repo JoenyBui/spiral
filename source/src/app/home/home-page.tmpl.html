@@ -4,18 +4,21 @@
             <md-tabs layout-fill flex md-dynamic-height md-no-disconnect md-stretch-tabs="always" md-no-pagination>
 
                 <md-tab label="Owned">
-                    <md-content class="md-padding">
-                        <md-list>
-                            <md-list-item class="md-2-line" ng-repeat="item in vm.essayRefs">
-                                <div class="md-list-item-text">
-                                    <span><a ng-href="#/essay/{{item.$id}}" ng-if="item.name">{{item.name}}</a></span>
-                                    <span><a ng-href="#/essay/{{item.$id}}" ng-if="!item.name">Untitled</a></span>
+                    <md-card-content class="overflow-auto">
+                        <md-content flex>
+                            <md-list class="margin-bottom-10" flex>
+                                <md-list-item class="md-2-line"
+                                              ng-repeat="item in vm.essayRefs" flex>
+                                    <div class="md-list-item-text">
+                                        <span><a ng-href="#/essay/{{item.$id}}" ng-if="item.name">{{item.name}}</a></span>
+                                        <span><a ng-href="#/essay/{{item.$id}}" ng-if="!item.name">Untitled</a></span>
 
-                                    <p>Last updated {{item.timestamp | date:"MM/dd/yyyy 'at' h:mma"}}</p>
-                                </div>
-                            </md-list-item>
-                        </md-list>
-                    </md-content>
+                                        <p>Last updated {{item.timestamp | date:"MM/dd/yyyy 'at' h:mma"}}</p>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
+                        </md-content>
+                    </md-card-content>
                 </md-tab>
 
                 <md-tab label="Shared">
@@ -34,7 +37,7 @@
         </tri-widget>
 
         <tri-widget flex="50" flex-xs="100" title="Contacts" contacts-widget content-layout="row">
-            <md-list flex>
+            <md-list class="margin-bottom-10" flex>
                 <md-list-item class="md-2-line" ng-repeat="friend in vm.friendsList" ng-click="vm.openDirectMessage($event, friend)">
                     <img class="md-avatar" ng-src="{{ vm.users.getGravatar(friend) }}" />
                     <!--<p>{{::friend.name}}</p>-->

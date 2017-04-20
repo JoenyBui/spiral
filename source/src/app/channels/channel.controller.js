@@ -36,6 +36,7 @@
         vm.createChannel = function(){
             vm.channels.$add(vm.newChannel).then(function(ref){
                 $state.go('triangular.channels.messages', {channelId: ref.key});
+                
             });
         };
     }
