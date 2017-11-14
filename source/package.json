@@ -67,6 +67,7 @@
   },
   "dependencies": {
     "@uirouter/angularjs": "^1.0.10",
+    "firebase": "^4.6.2",
     "webpack-dev-server": "^1.8.0"
   }
 }

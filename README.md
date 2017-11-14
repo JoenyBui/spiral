@@ -2,6 +2,14 @@
 
 ### Deploying your site
 
+To run your code locally, go to the source folder and run
+
+```
+    gulp serve
+```
+
+and then go to browser and open http://wwww.localhost:3000/.
+
 To deploy your site, simply run the following command from your project directory:
 
 ```
