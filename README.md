@@ -9,3 +9,15 @@ To deploy your site, simply run the following command from your project director
 ```
 
 This will deploy your project to <YOUR-FIREBASE-APP>.firebaseapp.com. In the next section, we'll walk through using a custom domain with Firebase Hosting.
+
+
+### Window Install
+
+Install python2.7 (Anaconda)
+Install ruby
+Install gem
+
+```
+  npm install node-sass -g
+  npm install bower -g
+```
